@@ -11,21 +11,23 @@
     "ogImage": "/assets/og-image.svg"
   },
   "theme": {
-    "primary": "#1f3a5f",
-    "primaryDark": "#14283f",
-    "accent": "#c8a15a",
-    "accentDark": "#a9843f",
+    "primary": "#182535",
+    "primaryDark": "#111b27",
+    "accent": "#ac9c7f",
+    "accentDark": "#8a7b5c",
     "background": "#ffffff",
     "surface": "#f5f6f8",
-    "text": "#1d2430",
+    "text": "#182535",
     "muted": "#5b6574",
     "border": "#dde1e7",
     "onPrimary": "#ffffff",
-    "onAccent": "#1d2430",
+    "onAccent": "#182535",
     "radius": "10px",
     "fontBody": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     "fontHeading": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
-    "fontStylesheet": ""
+    "fontStylesheet": "",
+    "accentText": "#7a6c4f",
+    "divider": "#334050"
   },
   "company": {
     "legalName": "ALFA ESTATE s.r.o.",
@@ -77,15 +79,19 @@
   },
   "stats": [
     {
-      "value": "[DOPLNIT]",
+      "value": "16+",
+      "label": "let zkušeností"
+    },
+    {
+      "value": "550+",
       "label": "prodaných nemovitostí"
     },
     {
-      "value": "[DOPLNIT]",
-      "label": "let na trhu"
+      "value": "900+",
+      "label": "realizovaných pronájmů"
     },
     {
-      "value": "[DOPLNIT]",
+      "value": "1200+",
       "label": "spokojených klientů"
     }
   ],

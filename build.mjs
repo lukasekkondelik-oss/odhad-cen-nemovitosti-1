@@ -243,7 +243,7 @@ fs.mkdirSync(path.join(DIST, 'css'), { recursive: true });
 fs.writeFileSync(
   path.join(DIST, 'css', 'theme.css'),
   `/* Generováno z site.config.json -> theme */
-:root{--c-primary:${t.primary};--c-primary-dark:${t.primaryDark};--c-accent:${t.accent};--c-accent-dark:${t.accentDark};--c-bg:${t.background};--c-surface:${t.surface};--c-text:${t.text};--c-muted:${t.muted};--c-border:${t.border};--c-on-primary:${t.onPrimary};--c-on-accent:${t.onAccent};--radius:${t.radius};--font-body:${t.fontBody};--font-heading:${t.fontHeading}}\n`
+:root{--c-primary:${t.primary};--c-primary-dark:${t.primaryDark};--c-accent:${t.accent};--c-accent-dark:${t.accentDark};--c-accent-text:${t.accentText};--c-divider:${t.divider};--c-bg:${t.background};--c-surface:${t.surface};--c-text:${t.text};--c-muted:${t.muted};--c-border:${t.border};--c-on-primary:${t.onPrimary};--c-on-accent:${t.onAccent};--radius:${t.radius};--font-body:${t.fontBody};--font-heading:${t.fontHeading}}\n`
 );
 
 // sitemap + robots

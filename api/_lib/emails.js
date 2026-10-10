@@ -1,10 +1,10 @@
 // Šablony e-mailů. TEXTY JSOU ZÁSTUPNÉ – nahraď je dodanými texty.
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const wrap = (inner, site) => `<!doctype html><html lang="cs"><body style="margin:0;background:#f5f6f8;font-family:Arial,Helvetica,sans-serif;color:#1d2430">
+const wrap = (inner, site) => `<!doctype html><html lang="cs"><body style="margin:0;background:#f5f6f8;font-family:Arial,Helvetica,sans-serif;color:#182535">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:10px;overflow:hidden">
-<tr><td style="background:#1f3a5f;color:#fff;padding:20px 28px;font-size:20px;font-weight:bold">${esc(site.brand)}</td></tr>
+<tr><td style="background:#182535;color:#fff;padding:20px 28px;font-size:20px;font-weight:bold">${esc(site.brand)}</td></tr>
 <tr><td style="padding:28px;font-size:15px;line-height:1.6">${inner}</td></tr>
 <tr><td style="padding:16px 28px;background:#f5f6f8;font-size:12px;color:#5b6574">${esc(site.company.legalName)} · IČO ${esc(site.company.ico)} · ${esc(site.company.address)}<br>${esc(site.company.phone)} · ${esc(site.company.email)}</td></tr>
 </table></td></tr></table></body></html>`;
@@ -44,7 +44,7 @@ export function agentEmail({ data, labelled, meta, site }) {
   const html = wrap(
     `<p style="font-size:18px"><strong>Nový lead k provolání</strong></p>
 ${rows(contact)}
-${tel ? `<p><a href="tel:${esc(tel)}" style="display:inline-block;background:#c8a15a;color:#1d2430;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Zavolat ${esc(data.phone)}</a></p>` : ''}
+${tel ? `<p><a href="tel:${esc(tel)}" style="display:inline-block;background:#ac9c7f;color:#182535;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Zavolat ${esc(data.phone)}</a></p>` : ''}
 <p style="margin-top:24px"><strong>Údaje o nemovitosti</strong></p>${rows(rest)}
 <p style="font-size:12px;color:#5b6574;margin-top:24px">Přijato: ${esc(meta.receivedAt)}${meta.page ? ` · Stránka: ${esc(meta.page)}` : ''}</p>`,
     site
