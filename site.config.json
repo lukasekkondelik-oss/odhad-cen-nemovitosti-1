@@ -8,7 +8,8 @@
     "logo": "/assets/logo.png",
     "logoAlt": "ALFA ESTATE – V&S Partners",
     "favicon": "/assets/favicon.svg",
-    "ogImage": "/assets/og-image.svg"
+    "ogImage": "/assets/og-image.svg",
+    "sub": "V&S Partners"
   },
   "theme": {
     "primary": "#182535",

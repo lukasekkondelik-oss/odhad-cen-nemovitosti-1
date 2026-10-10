@@ -131,6 +131,7 @@ function jsonLd(page, loc) {
     '@id': `${base}/#organization`,
     name: cfg.brand.name,
     legalName: c.legalName,
+    alternateName: `${cfg.brand.name} ${cfg.brand.sub}`,
     url: base + '/',
     logo: cfg.brand.logo ? base + cfg.brand.logo : undefined,
     image: base + cfg.brand.ogImage,
