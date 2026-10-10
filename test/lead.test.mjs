@@ -9,7 +9,7 @@ globalThis.fetch = async (url, opts) => {
 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'a <a@b.cz>', AGENT_EMAIL: 'makler@b.cz' };
 const call = (body, e = env, headers = {}) => processLead({ body, headers, env: e });
-const good = { propertyType: 'Byt', address: 'Brno', name: 'Jan <b>Novák</b>', phone: '777 111 222', email: 'jan@test.cz', consent: true, ts: Date.now() - 10000 };
+const good = { propertyType: 'Byt', address: 'Praha', name: 'Jan <b>Novák</b>', phone: '777 111 222', email: 'jan@test.cz', consent: true, ts: Date.now() - 10000 };
 
 let r = await call(good);
 assert.equal(r.status, 200);

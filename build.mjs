@@ -48,6 +48,9 @@ const helpers = {
       .map((l) => `<a class="chip" href="/odhad-nemovitosti-${esc(l.slug)}/">Odhad nemovitosti ${esc(l.locative)}</a>`)
       .join(''),
 
+  locationsBlock: () =>
+    cfg.locations.length ? `<p class="footer-title">Lokality</p><p class="chips">${helpers.locations()}</p>` : '',
+
   team: () =>
     cfg.team.members
       .map((m) => {
@@ -133,7 +136,7 @@ function jsonLd(page, loc) {
       postalCode: c.zip,
       addressCountry: 'CZ'
     },
-    areaServed: cfg.locations.map((l) => ({ '@type': 'City', name: l.name })),
+    areaServed: cfg.locations.length ? cfg.locations.map((l) => ({ '@type': 'City', name: l.name })) : undefined,
     sameAs: [c.mainSite, ...Object.values(c.social).filter(Boolean)],
     employee: cfg.team.members.map((m) => ({ '@type': 'Person', name: m.name, jobTitle: m.role }))
   };

@@ -10,7 +10,7 @@ Statický web (bez frameworku, bez závislostí) + jedna serverless funkce pro f
 | Logo, fotky týmu | `static/assets/` (cesty pak do configu) |
 | Texty e-mailů (klient + makléřka) | `api/_lib/emails.js` |
 | Texty stránek | `src/pages/*.html` |
-| Nová lokalita (SEO stránka) | přidat objekt do `locations` v configu |
+| Nová lokalita (SEO stránka) | přesunout vzor z `_locationsExample` do `locations` v configu |
 
 Build vypíše varování `[DOPLNIT]`, dokud zbývají nevyplněné údaje.
 
