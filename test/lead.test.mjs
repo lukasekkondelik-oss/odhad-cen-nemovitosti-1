@@ -1,6 +1,6 @@
-// Jednoduchý test funkce /api/lead s mockovaným fetchem (žádné závislosti).
+// Jednoduchý test /api/lead s mockovaným fetchem (žádné závislosti).
 import assert from 'node:assert/strict';
-import { onRequestPost } from '../functions/api/lead.js';
+import { processLead } from '../api/lead.js';
 
 const sent = [];
 globalThis.fetch = async (url, opts) => {
@@ -8,8 +8,7 @@ globalThis.fetch = async (url, opts) => {
   return new Response('{}', { status: 200 });
 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'a <a@b.cz>', AGENT_EMAIL: 'makler@b.cz' };
-const call = (body, e = env) =>
-  onRequestPost({ request: new Request('https://x.cz/api/lead', { method: 'POST', body: JSON.stringify(body) }), env: e });
+const call = (body, e = env, headers = {}) => processLead({ body, headers, env: e });
 const good = { propertyType: 'Byt', address: 'Brno', name: 'Jan <b>Novák</b>', phone: '777 111 222', email: 'jan@test.cz', consent: true, ts: Date.now() - 10000 };
 
 let r = await call(good);
@@ -22,6 +21,8 @@ assert.ok(!sent[0].body.html.includes('<b>Novák'), 'HTML je escapované');
 sent.length = 0;
 assert.equal((await call({ ...good, website: 'spam' })).status, 200);
 assert.equal(sent.length, 0, 'honeypot neposílá');
+assert.equal((await call(good, env, { origin: 'https://evil.cz', host: 'x.cz' })).status, 403);
+assert.equal((await call(good, env, { origin: 'https://x.cz', host: 'x.cz' })).status, 200);
 
 assert.equal((await call({ ...good, consent: false })).status, 400);
 assert.equal((await call({ ...good, email: 'zle' })).status, 400);

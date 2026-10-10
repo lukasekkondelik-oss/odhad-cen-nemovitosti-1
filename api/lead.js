@@ -1,0 +1,92 @@
+// POST /api/lead (Vercel Function, Node.js) – přijme formulář, zvaliduje,
+// pošle e-mail makléři i klientovi. Proměnné prostředí: viz README.
+import cfg from './_lib/fields.generated.js';
+import { sendMail } from './_lib/mail.js';
+import { clientEmail, agentEmail } from './_lib/emails.js';
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const clean = (v, max = 2000) =>
+  String(v ?? '').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, '').trim().slice(0, max);
+
+// Čistá logika (bez req/res) – snadno testovatelná. Vrací { status, body }.
+export async function processLead({ body, headers = {}, env }) {
+  const r = (status, b) => ({ status, body: b });
+  if (!body || typeof body !== 'object') return r(400, { ok: false, error: 'bad_json' });
+
+  // stejný původ (základní ochrana proti cizím formulářům)
+  const origin = headers.origin;
+  if (origin) {
+    let host = '';
+    try { host = new URL(origin).host; } catch {}
+    if (host !== headers.host) return r(403, { ok: false, error: 'origin' });
+  }
+
+  // honeypot a příliš rychlé odeslání = bot; tvářit se, že vše OK
+  if (clean(body.website)) return r(200, { ok: true });
+  const ts = Number(body.ts);
+  if (ts && Date.now() - ts < 3000) return r(200, { ok: true });
+
+  if (body.consent !== true) return r(400, { ok: false, error: 'consent' });
+
+  // Cloudflare Turnstile (CAPTCHA) (volitelné – zapne se nastavením TURNSTILE_SECRET)
+  if (env.TURNSTILE_SECRET) {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: clean(body['cf-turnstile-response']) })
+    });
+    const t = await res.json().catch(() => ({}));
+    if (!t.success) return r(400, { ok: false, error: 'captcha' });
+  }
+
+  // validace podle definice polí z site.config.json
+  const data = {};
+  const labelled = [];
+  for (const f of cfg.fields) {
+    const v = clean(body[f.name], f.type === 'textarea' ? 2000 : 300);
+    if (f.required && !v) return r(400, { ok: false, error: `missing:${f.name}` });
+    if (v && f.type === 'email' && !EMAIL_RE.test(v)) return r(400, { ok: false, error: `invalid:${f.name}` });
+    if (v && f.type === 'select' && !f.options.includes(v)) return r(400, { ok: false, error: `invalid:${f.name}` });
+    data[f.name] = v;
+    if (v) labelled.push({ name: f.name, label: f.label, value: v });
+  }
+  if (!data.email || !data.name) return r(500, { ok: false, error: 'config' }); // formulář musí mít pole name a email
+
+  const meta = {
+    receivedAt: new Date().toISOString(),
+    ip: String(headers['x-forwarded-for'] || '').split(',')[0].trim(),
+    page: headers.referer || ''
+  };
+  const ctx = { data, labelled, meta, site: cfg };
+
+  try {
+    const agents = String(env.AGENT_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (!agents.length) throw new Error('AGENT_EMAIL není nastaven');
+
+    // 1) lead pro makléřku – nejdůležitější, jde první
+    await sendMail(env, { to: agents, replyTo: data.email, ...agentEmail(ctx) });
+    // 2) potvrzení klientovi – selhání neshodí požadavek (lead už je doručen)
+    try { await sendMail(env, { to: [data.email], replyTo: agents[0], ...clientEmail(ctx) }); }
+    catch (e) { console.error('client mail failed', e.message); }
+    // 3) volitelně webhook (např. Make) – best effort
+    if (env.LEAD_WEBHOOK_URL) {
+      await fetch(env.LEAD_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...data, ...meta }),
+        signal: AbortSignal.timeout(3000)
+      }).catch(() => {});
+    }
+    return r(200, { ok: true });
+  } catch (e) {
+    console.error('lead failed', e.message);
+    return r(502, { ok: false, error: 'send_failed' });
+  }
+}
+
+export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+  if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'method' });
+  const { status, body } = await processLead({ body: req.body, headers: req.headers, env: process.env });
+  return res.status(status).json(body);
+}

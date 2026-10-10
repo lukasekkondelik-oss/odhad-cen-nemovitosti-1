@@ -1,4 +1,5 @@
-{
+// Generováno buildem z site.config.json – needitovat
+export default {
   "brand": "Název kanceláře",
   "company": {
     "legalName": "[DOPLNIT] Název společnosti a.s.",
@@ -117,4 +118,4 @@
       "autocomplete": "email"
     }
   ]
-}
+};

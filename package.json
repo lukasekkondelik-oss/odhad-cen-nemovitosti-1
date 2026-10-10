@@ -2,10 +2,10 @@
   "name": "odhad-cen-nemovitosti",
   "private": true,
   "type": "module",
-  "description": "Landing/web pro odhady cen nemovitostí – statický web + Cloudflare Pages Function",
+  "description": "Landing/web pro odhady cen nemovitostí – statický web + Vercel Function",
   "scripts": {
     "build": "node build.mjs",
-    "dev": "node build.mjs && npx wrangler pages dev dist --compatibility-date=2024-09-01",
+    "dev": "node build.mjs && npx vercel dev",
     "test": "node build.mjs && node test/lead.test.mjs"
   }
 }

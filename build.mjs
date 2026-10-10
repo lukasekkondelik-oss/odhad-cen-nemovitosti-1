@@ -254,10 +254,11 @@ fs.writeFileSync(
 fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${base}/sitemap.xml\n`);
 
 // pole formuláře pro serverless funkci (validace na straně serveru)
-fs.mkdirSync(path.join(ROOT, 'functions', '_lib'), { recursive: true });
+fs.mkdirSync(path.join(ROOT, 'api', '_lib'), { recursive: true });
 fs.writeFileSync(
-  path.join(ROOT, 'functions', '_lib', 'fields.generated.json'),
-  JSON.stringify({ brand: cfg.brand.name, company: cfg.company, fields: cfg.form.fields }, null, 2) + '\n'
+  path.join(ROOT, 'api', '_lib', 'fields.generated.js'),
+  '// Generováno buildem z site.config.json – needitovat\nexport default ' +
+    JSON.stringify({ brand: cfg.brand.name, company: cfg.company, fields: cfg.form.fields }, null, 2) + ';\n'
 );
 
 // varování na nedoplněné údaje
