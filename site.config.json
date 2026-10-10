@@ -9,11 +9,12 @@
     "logoAlt": "ALFA ESTATE – V&S Partners",
     "favicon": "/assets/favicon.svg",
     "ogImage": "/assets/og-image.svg",
-    "sub": "V&S Partners"
+    "sub": "V&S Partners",
+    "logoLight": "/assets/logo-light.png"
   },
   "theme": {
     "primary": "#182535",
-    "primaryDark": "#111b27",
+    "primaryDark": "#0f1a29",
     "accent": "#ac9c7f",
     "accentDark": "#8a7b5c",
     "background": "#ffffff",
@@ -28,7 +29,11 @@
     "fontHeading": "'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     "fontStylesheet": "",
     "accentText": "#7a6c4f",
-    "divider": "#334050"
+    "divider": "#334050",
+    "footerText": "#99a2ad",
+    "footerLink": "#a6b0b8",
+    "footerMuted": "#767f8c",
+    "footerLine": "#202c38"
   },
   "company": {
     "legalName": "ALFA ESTATE V&S Partners s.r.o.",

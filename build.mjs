@@ -36,6 +36,11 @@ const helpers = {
       ? `<img src="${esc(cfg.brand.logo)}" alt="${esc(cfg.brand.logoAlt)}" width="158" height="58">`
       : `<span class="wordmark">${esc(cfg.brand.name)}</span>`,
 
+  logoLight: () =>
+    cfg.brand.logoLight
+      ? `<img src="${esc(cfg.brand.logoLight)}" alt="${esc(cfg.brand.logoAlt)}" width="170" height="63" loading="lazy">`
+      : `<span class="wordmark">${esc(cfg.brand.name)}</span><span class="brand-sub">${esc(cfg.brand.sub)}</span>`,
+
   stats: () =>
     cfg.stats.map((s) => `<div class="stat">${icon(s.icon)}<strong>${esc(s.value)}</strong><span class="lbl">${esc(s.label)}</span></div>`).join(''),
 
@@ -253,7 +258,7 @@ fs.mkdirSync(path.join(DIST, 'css'), { recursive: true });
 fs.writeFileSync(
   path.join(DIST, 'css', 'theme.css'),
   `/* Generováno z site.config.json -> theme */
-:root{--c-primary:${t.primary};--c-primary-dark:${t.primaryDark};--c-accent:${t.accent};--c-accent-dark:${t.accentDark};--c-accent-text:${t.accentText};--c-divider:${t.divider};--c-bg:${t.background};--c-surface:${t.surface};--c-text:${t.text};--c-muted:${t.muted};--c-border:${t.border};--c-on-primary:${t.onPrimary};--c-on-accent:${t.onAccent};--radius:${t.radius};--font-body:${t.fontBody};--font-heading:${t.fontHeading}}\n`
+:root{--c-primary:${t.primary};--c-primary-dark:${t.primaryDark};--c-accent:${t.accent};--c-accent-dark:${t.accentDark};--c-accent-text:${t.accentText};--c-divider:${t.divider};--c-footer-text:${t.footerText};--c-footer-link:${t.footerLink};--c-footer-muted:${t.footerMuted};--c-footer-line:${t.footerLine};--c-bg:${t.background};--c-surface:${t.surface};--c-text:${t.text};--c-muted:${t.muted};--c-border:${t.border};--c-on-primary:${t.onPrimary};--c-on-accent:${t.onAccent};--radius:${t.radius};--font-body:${t.fontBody};--font-heading:${t.fontHeading}}\n`
 );
 
 // sitemap + robots
