@@ -1,0 +1,11 @@
+<header class="site-header">
+  <div class="container bar">
+    <a class="logo" href="/" aria-label="{{brand.name}} – úvodní strana">{{@logo}}</a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Menu"><span></span></button>
+    <nav id="main-nav" class="nav" aria-label="Hlavní navigace">
+      {{@nav}}
+      <a class="nav-main" href="{{company.mainSite}}" rel="noopener" target="_blank">{{company.mainSiteLabel}} ↗</a>
+    </nav>
+    <a class="btn btn-accent header-cta" href="/#formular">Zjistit cenu</a>
+  </div>
+</header>

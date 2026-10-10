@@ -1,0 +1,22 @@
+<!--meta {
+  "title": "Odhad ceny nemovitosti %locative% zdarma – byt, dům, pozemek",
+  "description": "Odhad ceny nemovitosti %locative% zdarma a nezávazně. Tržní cena bytu, domu a pozemku od místních realitních makléřů. Ozveme se do 24 hodin.",
+  "crumb": "Odhad nemovitosti %name%",
+  "priority": 0.9,
+  "faq": true,
+  "service": true,
+  "serviceName": "Odhad ceny nemovitosti %locative%"
+} -->
+<section class="page-head"><div class="container narrow"><h1>Odhad ceny nemovitosti {{loc.locative}}</h1>
+<p class="lead">{{loc.intro}}</p></div></section>
+<section class="section"><div class="container split">
+  <div class="prose">
+    <h2>Oceňujeme byty, domy i pozemky {{loc.locative}}</h2>
+    <p>Naši makléři znají realitní trh v lokalitě {{loc.name}} ({{loc.region}}) z praxe. Odhad vychází ze skutečně prodaných nemovitostí a aktuální poptávky, ne jen z inzertních cen.</p>
+    <h3>Městské části a lokality</h3>
+    {{{areaList}}}
+    <p>Odhad je zdarma, nezávazný a makléř se vám ozve do 24 hodin.</p>
+  </div>
+  <div class="card" id="formular"><h2>{{form.title}}</h2>{{@form}}</div>
+</div></section>
+<section class="section alt" id="faq"><div class="container narrow"><h2>Časté dotazy</h2>{{@faq}}</div></section>

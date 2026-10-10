@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{page.title}}</title>
+<meta name="description" content="{{page.description}}">
+<meta name="robots" content="{{page.robots}}">
+<meta name="theme-color" content="{{site.theme.primary}}">
+<link rel="canonical" href="{{page.url}}">
+<link rel="icon" href="{{brand.favicon}}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="cs_CZ">
+<meta property="og:site_name" content="{{brand.name}}">
+<meta property="og:title" content="{{page.title}}">
+<meta property="og:description" content="{{page.description}}">
+<meta property="og:url" content="{{page.url}}">
+<meta property="og:image" content="{{page.ogImage}}">
+<meta name="twitter:card" content="summary_large_image">
+{{@fontLink}}
+<link rel="stylesheet" href="/css/theme.css">
+<link rel="stylesheet" href="/css/style.css">
+{{@analytics}}
+{{@jsonld}}
+</head>
+<body>
+<a class="skip" href="#obsah">Přeskočit na obsah</a>
+{{> header}}
+<main id="obsah">
+{{{content}}}
+</main>
+{{> footer}}
+{{> cookie-banner}}
+<script src="/js/main.js" defer></script>
+</body>
+</html>

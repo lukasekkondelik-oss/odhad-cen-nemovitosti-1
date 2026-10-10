@@ -1,0 +1,24 @@
+<!--meta {
+  "path": "/kontakt/",
+  "title": "Kontakt – realitní kancelář, telefon, e-mail, adresa",
+  "description": "Kontaktujte naši realitní kancelář: telefon, e-mail, adresa a otevírací doba. Rádi vám poradíme s odhadem i prodejem nemovitosti.",
+  "crumb": "Kontakt",
+  "priority": 0.7
+} -->
+<section class="page-head"><div class="container narrow"><h1>Kontakt</h1></div></section>
+<section class="section"><div class="container split">
+  <div class="prose">
+    <h2>{{company.legalName}}</h2>
+    <p>{{company.address}}</p>
+    <p><strong>Telefon:</strong> <a href="tel:{{company.phone}}">{{company.phone}}</a><br>
+    <strong>E-mail:</strong> <a href="mailto:{{company.email}}">{{company.email}}</a><br>
+    <strong>Otevírací doba:</strong> {{company.openingHours}}</p>
+    <p>IČO: {{company.ico}}<br>DIČ: {{company.dic}}</p>
+    <p class="small">{{company.register}}</p>
+    <p><a href="{{company.mainSite}}" rel="noopener" target="_blank">Hlavní web {{company.mainSiteLabel}} ↗</a></p>
+  </div>
+  <div class="card" id="formular">
+    <h2>{{form.title}}</h2>
+    {{@form}}
+  </div>
+</div></section>

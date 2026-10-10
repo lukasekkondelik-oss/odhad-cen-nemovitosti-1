@@ -1,0 +1,170 @@
+{
+  "_info": "JEDINÝ soubor, který upravuješ pro brand, texty, tým a formulář. Hodnoty '[DOPLNIT]' build vypíše jako varování.",
+
+  "siteUrl": "https://odhad.example.cz",
+  "lang": "cs",
+
+  "brand": {
+    "name": "Název kanceláře",
+    "tagline": "Odhad ceny nemovitosti zdarma",
+    "logo": "",
+    "logoAlt": "Logo kanceláře",
+    "favicon": "/assets/favicon.svg",
+    "ogImage": "/assets/og-image.svg"
+  },
+
+  "theme": {
+    "primary": "#1f3a5f",
+    "primaryDark": "#14283f",
+    "accent": "#c8a15a",
+    "accentDark": "#a9843f",
+    "background": "#ffffff",
+    "surface": "#f5f6f8",
+    "text": "#1d2430",
+    "muted": "#5b6574",
+    "border": "#dde1e7",
+    "onPrimary": "#ffffff",
+    "onAccent": "#1d2430",
+    "radius": "10px",
+    "fontBody": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+    "fontHeading": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+    "fontStylesheet": ""
+  },
+
+  "company": {
+    "legalName": "[DOPLNIT] Název společnosti a.s.",
+    "ico": "[DOPLNIT]",
+    "dic": "[DOPLNIT]",
+    "address": "[DOPLNIT] Ulice 1, 602 00 Brno",
+    "street": "[DOPLNIT] Ulice 1",
+    "city": "Brno",
+    "zip": "602 00",
+    "register": "[DOPLNIT] Zapsána v obchodním rejstříku vedeném u Krajského soudu v Brně, oddíl B, vložka XXXX",
+    "phone": "+420 000 000 000",
+    "email": "info@example.cz",
+    "privacyEmail": "gdpr@example.cz",
+    "mainSite": "https://alfaestate.cz/",
+    "mainSiteLabel": "alfaestate.cz",
+    "openingHours": "Po–Pá 9:00–17:00",
+    "social": {
+      "facebook": "",
+      "instagram": "",
+      "linkedin": ""
+    }
+  },
+
+  "nav": [
+    { "label": "Odhad nemovitosti", "href": "/#formular" },
+    { "label": "Jak to funguje", "href": "/#jak-to-funguje" },
+    { "label": "O nás", "href": "/o-nas/" },
+    { "label": "Časté dotazy", "href": "/#faq" },
+    { "label": "Kontakt", "href": "/kontakt/" }
+  ],
+
+  "hero": {
+    "title": "Kolik stojí vaše nemovitost? Zjistěte to zdarma a nezávazně",
+    "lead": "Odhad tržní ceny bytu, domu nebo pozemku od zkušených makléřů. Vyplňte krátký formulář a my se vám ozveme.",
+    "cta": "Chci odhad ceny"
+  },
+
+  "stats": [
+    { "value": "[DOPLNIT]", "label": "prodaných nemovitostí" },
+    { "value": "[DOPLNIT]", "label": "let na trhu" },
+    { "value": "[DOPLNIT]", "label": "spokojených klientů" }
+  ],
+
+  "steps": [
+    { "title": "Vyplníte formulář", "text": "Zabere to pár minut. Stačí základní údaje o nemovitosti a kontakt na vás." },
+    { "title": "Analyzujeme trh", "text": "Makléř porovná vaši nemovitost s aktuálními nabídkami a skutečně realizovanými prodeji v lokalitě." },
+    { "title": "Ozveme se vám", "text": "Zavoláme vám, předáme odhad ceny a probereme, jak nemovitost nejlépe prodat či jak s ní naložit." }
+  ],
+
+  "services": [
+    { "title": "Odhad ceny bytu", "text": "Tržní odhad bytu podle dispozice, stavu, lokality a aktuální poptávky.", "href": "/odhad-ceny-bytu/" },
+    { "title": "Odhad ceny domu", "text": "Odhad rodinného domu včetně pozemku, technického stavu a potenciálu lokality.", "href": "/odhad-ceny-domu/" },
+    { "title": "Odhad ceny pozemku", "text": "Cena stavebních i ostatních pozemků podle územního plánu a dostupnosti sítí.", "href": "/odhad-ceny-pozemku/" }
+  ],
+
+  "locations": [
+    {
+      "slug": "brno",
+      "name": "Brno",
+      "locative": "v Brně",
+      "region": "Jihomoravský kraj",
+      "intro": "Brno patří mezi nejžádanější realitní trhy v republice. Ceny se výrazně liší mezi městskými částmi, proto potřebuje odhad znát konkrétní lokalitu i typ domu.",
+      "areas": ["Brno-střed", "Brno-sever", "Brno-Královo Pole", "Brno-Židenice", "Brno-Líšeň", "Brno-Bystrc", "Brno-Komín"]
+    }
+  ],
+
+  "team": {
+    "intro": "Za naší kanceláří stojí tým makléřů, kteří trh znají z praxe. S vámi bude jednat konkrétní člověk od odhadu až po případný prodej.",
+    "members": [
+      { "name": "[DOPLNIT] Jméno Příjmení", "role": "Vedoucí kanceláře, realitní makléř", "bio": "[DOPLNIT] Krátké bio – zkušenosti, specializace, lokality.", "photo": "", "phone": "", "email": "" },
+      { "name": "[DOPLNIT] Jméno Příjmení", "role": "Realitní makléř", "bio": "[DOPLNIT] Krátké bio.", "photo": "", "phone": "", "email": "" },
+      { "name": "[DOPLNIT] Jméno Příjmení", "role": "Realitní makléř", "bio": "[DOPLNIT] Krátké bio.", "photo": "", "phone": "", "email": "" }
+    ]
+  },
+
+  "about": {
+    "title": "O naší kanceláři",
+    "paragraphs": [
+      "[DOPLNIT] Představení kanceláře – od kdy působí, na co se specializuje, v jakých lokalitách.",
+      "[DOPLNIT] Čím se kancelář liší, jaké hodnoty vyznává, jak pracuje s klienty."
+    ],
+    "values": [
+      { "title": "Férovost", "text": "Říkáme klientovi realistickou cenu, ne tu, kterou chce slyšet." },
+      { "title": "Lokální znalost", "text": "Víme, co se v okolí skutečně prodává a za kolik." },
+      { "title": "Osobní přístup", "text": "Máte jednoho makléře, který vás celým procesem provede." }
+    ]
+  },
+
+  "faq": [
+    {
+      "q": "Je odhad ceny nemovitosti opravdu zdarma?",
+      "a": "Ano. Odhad tržní ceny je zcela zdarma a nezávazný. Nic vás nezavazuje k tomu, abyste s námi nemovitost prodávali."
+    },
+    {
+      "q": "Jak přesný je odhad ceny?",
+      "a": "Vycházíme z aktuálních nabídek, skutečně dosažených cen v okolí a vašich informací o stavu nemovitosti. Přesnost závisí na kvalitě podkladů, proto při osobní schůzce rádi nemovitost prohlédneme."
+    },
+    {
+      "q": "Jaký je rozdíl mezi tržním odhadem a znaleckým posudkem?",
+      "a": "Tržní odhad určuje cenu, za kterou lze nemovitost reálně prodat. Znalecký posudek je úřední dokument vypracovaný soudním znalcem, který se využívá například pro banku, dědické řízení nebo soud. Tržní odhad posudek nenahrazuje."
+    },
+    {
+      "q": "Jak dlouho trvá, než se mi makléř ozve?",
+      "a": "Zpravidla do 24 hodin v pracovní dny. Odhad vám pošleme také e-mailem."
+    },
+    {
+      "q": "Co se děje s mými osobními údaji?",
+      "a": "Údaje použijeme pouze k vypracování odhadu a ke kontaktování vás. Podrobnosti najdete v zásadách ochrany osobních údajů."
+    }
+  ],
+
+  "form": {
+    "title": "Zjistěte cenu své nemovitosti",
+    "intro": "Vyplňte údaje o nemovitosti. Odhad vám pošleme e-mailem a makléř se vám ozve.",
+    "submit": "Odeslat a získat odhad",
+    "sending": "Odesílám…",
+    "success": "Děkujeme! Poptávka byla odeslána, potvrzení jsme vám poslali e-mailem. Makléř se vám brzy ozve.",
+    "error": "Odeslání se nepodařilo. Zkuste to prosím znovu, nebo nám zavolejte.",
+    "consent": "Souhlasím se zpracováním osobních údajů za účelem vypracování odhadu a kontaktování makléřem, v rozsahu uvedeném v [zásadách ochrany osobních údajů](/ochrana-osobnich-udaju/).",
+    "fields": [
+      { "name": "propertyType", "label": "Typ nemovitosti", "type": "select", "required": true, "options": ["Byt", "Rodinný dům", "Pozemek", "Jiné"] },
+      { "name": "address", "label": "Adresa / lokalita", "type": "text", "required": true, "placeholder": "Ulice, město" },
+      { "name": "disposition", "label": "Dispozice", "type": "select", "options": ["1+kk", "1+1", "2+kk", "2+1", "3+kk", "3+1", "4+kk", "4+1", "5+ a větší", "Neuvedeno"] },
+      { "name": "area", "label": "Užitná plocha (m²)", "type": "number", "placeholder": "např. 65" },
+      { "name": "condition", "label": "Stav nemovitosti", "type": "select", "options": ["Novostavba", "Po rekonstrukci", "Dobrý", "Před rekonstrukcí", "Špatný"] },
+      { "name": "reason", "label": "Účel odhadu", "type": "select", "options": ["Chci prodat", "Zvažuji prodej", "Dědictví / vypořádání", "Jen mě zajímá cena", "Jiné"] },
+      { "name": "note", "label": "Poznámka", "type": "textarea", "width": "full", "placeholder": "Cokoli dalšího, co nám pomůže" },
+      { "name": "name", "label": "Jméno a příjmení", "type": "text", "required": true, "autocomplete": "name" },
+      { "name": "phone", "label": "Telefon", "type": "tel", "required": true, "autocomplete": "tel" },
+      { "name": "email", "label": "E-mail", "type": "email", "required": true, "autocomplete": "email" }
+    ]
+  },
+
+  "analytics": {
+    "_info": "Měřicí kód se načte JEN po souhlasu s cookies. Vyplň např. Google Analytics ID (G-XXXXXXX), jinak nic nenačítá.",
+    "gaId": ""
+  }
+}

@@ -1,0 +1,73 @@
+<!--meta {
+  "path": "/",
+  "file": "index.html",
+  "title": "Odhad ceny nemovitosti zdarma online | Byt, dům, pozemek – Brno",
+  "description": "Zjistěte tržní cenu bytu, domu či pozemku zdarma a nezávazně. Odhad od zkušených realitních makléřů, osobní ozvání do 24 hodin. Vyplňte krátký formulář.",
+  "priority": 1.0,
+  "faq": true,
+  "service": true,
+  "serviceName": "Odhad ceny nemovitosti zdarma"
+} -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">{{brand.tagline}}</p>
+      <h1>{{hero.title}}</h1>
+      <p class="lead">{{hero.lead}}</p>
+      <ul class="ticks">
+        <li>Odhad zdarma a bez závazků</li>
+        <li>Vychází ze skutečných prodejů v okolí</li>
+        <li>Osobní ozvání makléře do 24 hodin</li>
+      </ul>
+    </div>
+    <div class="hero-form card" id="formular">
+      <h2>{{form.title}}</h2>
+      <p>{{form.intro}}</p>
+      {{@form}}
+    </div>
+  </div>
+</section>
+
+<section class="stats"><div class="container stats-grid">{{@stats}}</div></section>
+
+<section class="section" id="jak-to-funguje">
+  <div class="container">
+    <h2>Jak odhad ceny nemovitosti probíhá</h2>
+    <p class="section-lead">Tři jednoduché kroky od poptávky po konkrétní cenu.</p>
+    <ol class="steps">{{@steps}}</ol>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>Odhad ceny podle typu nemovitosti</h2>
+    <div class="cards">{{@services}}</div>
+    <p class="chips">{{@locations}}</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split">
+    <div>
+      <h2>{{about.title}}</h2>
+      <p>{{about.paragraphs.0}}</p>
+      <p><a class="btn btn-outline" href="/o-nas/">Poznejte náš tým</a> <a class="btn btn-link" href="{{company.mainSite}}" rel="noopener" target="_blank">Navštívit {{company.mainSiteLabel}} ↗</a></p>
+    </div>
+    <div class="cards cards-2">{{@values}}</div>
+  </div>
+</section>
+
+<section class="section alt" id="faq">
+  <div class="container narrow">
+    <h2>Časté dotazy k odhadu ceny nemovitosti</h2>
+    {{@faq}}
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Připraveni zjistit cenu své nemovitosti?</h2>
+    <p>Zabere to pár minut a je to zdarma.</p>
+    <a class="btn btn-accent" href="#formular">{{hero.cta}}</a>
+  </div>
+</section>

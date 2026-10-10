@@ -1,0 +1,29 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-title">{{brand.name}}</p>
+      <p>{{company.legalName}}<br>IČO: {{company.ico}}<br>DIČ: {{company.dic}}<br>{{company.address}}</p>
+      <p class="small">{{company.register}}</p>
+    </div>
+    <div>
+      <p class="footer-title">Kontakt</p>
+      <p><a href="tel:{{company.phone}}">{{company.phone}}</a><br><a href="mailto:{{company.email}}">{{company.email}}</a><br>{{company.openingHours}}</p>
+      <p>{{@social}}</p>
+    </div>
+    <div>
+      <p class="footer-title">Služby</p>
+      <p><a href="/odhad-ceny-bytu/">Odhad ceny bytu</a><br><a href="/odhad-ceny-domu/">Odhad ceny domu</a><br><a href="/odhad-ceny-pozemku/">Odhad ceny pozemku</a></p>
+      <p class="footer-title">Lokality</p>
+      <p class="chips">{{@locations}}</p>
+    </div>
+    <div>
+      <p class="footer-title">Hlavní web</p>
+      <p><a href="{{company.mainSite}}" rel="noopener" target="_blank">{{company.mainSiteLabel}}</a></p>
+      <p><a href="/o-nas/">O nás a náš tým</a><br><a href="/kontakt/">Kontakt</a></p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {{@year}} {{company.legalName}}</span>
+    <span><a href="/ochrana-osobnich-udaju/">Ochrana osobních údajů</a> · <a href="/cookies/">Cookies</a> · <a href="/obchodni-podminky/">Podmínky používání</a> · <button type="button" class="linklike" data-cookie-settings>Nastavení cookies</button></span>
+  </div>
+</footer>
