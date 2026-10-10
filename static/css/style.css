@@ -82,7 +82,7 @@ a.card:hover{border-color:var(--c-accent)}
 .steps{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px}
 .step-num{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--c-primary);color:var(--c-on-primary);font-weight:700;margin-bottom:12px}
 .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.chip{display:inline-block;padding:.45em 1em;border:1px solid var(--c-border);border-radius:999px;background:var(--c-bg);font-size:.9rem;text-decoration:none}
+.chip{display:inline-block;padding:.45em 1em;border:1px solid var(--c-border);border-radius:18px;background:var(--c-bg);font-size:.9rem;text-decoration:none}
 .chip:hover{border-color:var(--c-accent)}
 .page-head{background:var(--c-surface);padding:48px 0 32px;border-bottom:1px solid var(--c-border)}
 .page-head .lead{color:var(--c-muted)}

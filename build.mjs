@@ -138,7 +138,7 @@ function jsonLd(page, loc) {
     telephone: c.phone,
     email: c.email,
     description: cfg.brand.tagline,
-    openingHours: c.openingHours,
+    openingHours: c.openingHoursSchema || c.openingHours,
     address: {
       '@type': 'PostalAddress',
       streetAddress: c.street,
@@ -146,7 +146,7 @@ function jsonLd(page, loc) {
       postalCode: c.zip,
       addressCountry: 'CZ'
     },
-    areaServed: cfg.locations.length ? cfg.locations.map((l) => ({ '@type': 'City', name: l.name })) : undefined,
+    areaServed: cfg.locations.length ? cfg.locations.map((l) => ({ '@type': 'AdministrativeArea', name: l.name })) : undefined,
     sameAs: [c.mainSite, ...Object.values(c.social).filter(Boolean)],
     employee: cfg.team.members.map((m) => ({ '@type': 'Person', name: m.name, jobTitle: m.role }))
   };
@@ -172,7 +172,7 @@ function jsonLd(page, loc) {
       name: page.serviceName || page.title,
       serviceType: 'Odhad ceny nemovitosti',
       provider: { '@id': `${base}/#organization` },
-      areaServed: loc ? { '@type': 'City', name: loc.name } : undefined,
+      areaServed: loc ? { '@type': 'AdministrativeArea', name: loc.name } : undefined,
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'CZK' }
     });
   }

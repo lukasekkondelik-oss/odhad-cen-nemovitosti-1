@@ -2,25 +2,27 @@
 export default {
   "brand": "ALFA ESTATE",
   "company": {
-    "legalName": "ALFA ESTATE s.r.o.",
+    "legalName": "ALFA ESTATE V&S Partners s.r.o.",
     "ico": "10799796",
     "dic": "[DOPLNIT] (CZ10799796, pokud je plátce DPH)",
-    "address": "[DOPLNIT] ulice, PSČ město",
-    "street": "[DOPLNIT] ulice",
-    "city": "[DOPLNIT] město",
-    "zip": "[DOPLNIT] PSČ",
+    "address": "Majakovského 707/29, Rybáře, 360 05 Karlovy Vary",
+    "street": "Majakovského 707/29, Rybáře",
+    "city": "Karlovy Vary",
+    "zip": "360 05",
     "register": "[DOPLNIT] Zapsána v obchodním rejstříku vedeném u [DOPLNIT] soudu, oddíl C, vložka [DOPLNIT]",
-    "phone": "+420 000 000 000",
-    "email": "info@example.cz",
-    "privacyEmail": "gdpr@example.cz",
+    "phone": "+420 603 382 392",
+    "email": "alfaestate@alfaestate.cz",
+    "privacyEmail": "alfaestate@alfaestate.cz",
     "mainSite": "https://alfaestate.cz/",
     "mainSiteLabel": "alfaestate.cz",
-    "openingHours": "Po–Pá 9:00–17:00",
+    "openingHours": "Po–Pá 9:00–17:00 · So dle dohody · Ne zavřeno",
     "social": {
       "facebook": "",
       "instagram": "",
       "linkedin": ""
-    }
+    },
+    "openingHoursSchema": "Mo-Fr 09:00-17:00",
+    "summary": "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje."
   },
   "fields": [
     {

@@ -31,25 +31,27 @@
     "divider": "#334050"
   },
   "company": {
-    "legalName": "ALFA ESTATE s.r.o.",
+    "legalName": "ALFA ESTATE V&S Partners s.r.o.",
     "ico": "10799796",
     "dic": "[DOPLNIT] (CZ10799796, pokud je plátce DPH)",
-    "address": "[DOPLNIT] ulice, PSČ město",
-    "street": "[DOPLNIT] ulice",
-    "city": "[DOPLNIT] město",
-    "zip": "[DOPLNIT] PSČ",
+    "address": "Majakovského 707/29, Rybáře, 360 05 Karlovy Vary",
+    "street": "Majakovského 707/29, Rybáře",
+    "city": "Karlovy Vary",
+    "zip": "360 05",
     "register": "[DOPLNIT] Zapsána v obchodním rejstříku vedeném u [DOPLNIT] soudu, oddíl C, vložka [DOPLNIT]",
-    "phone": "+420 000 000 000",
-    "email": "info@example.cz",
-    "privacyEmail": "gdpr@example.cz",
+    "phone": "+420 603 382 392",
+    "email": "alfaestate@alfaestate.cz",
+    "privacyEmail": "alfaestate@alfaestate.cz",
     "mainSite": "https://alfaestate.cz/",
     "mainSiteLabel": "alfaestate.cz",
-    "openingHours": "Po–Pá 9:00–17:00",
+    "openingHours": "Po–Pá 9:00–17:00 · So dle dohody · Ne zavřeno",
     "social": {
       "facebook": "",
       "instagram": "",
       "linkedin": ""
-    }
+    },
+    "openingHoursSchema": "Mo-Fr 09:00-17:00",
+    "summary": "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje."
   },
   "nav": [
     {
@@ -131,32 +133,77 @@
       "href": "/odhad-ceny-pozemku/"
     }
   ],
-  "locations": [],
+  "locations": [
+    {
+      "slug": "karlovarsky-kraj",
+      "name": "Karlovarský kraj",
+      "locative": "v Karlovarském kraji",
+      "region": "Západní Čechy",
+      "intro": "Karlovarský kraj známe z praxe už přes 16 let. Ceny nemovitostí se výrazně liší mezi lázeňskými městy, průmyslovými centry i menšími obcemi, proto odhad vždy vychází z konkrétní lokality.",
+      "areas": [
+        "Karlovy Vary",
+        "Cheb",
+        "Sokolov",
+        "Mariánské Lázně",
+        "Ostrov",
+        "Aš",
+        "Kraslice",
+        "Chodov",
+        "Nejdek",
+        "Františkovy Lázně",
+        "Jáchymov"
+      ]
+    },
+    {
+      "slug": "chomutov",
+      "name": "Chomutov",
+      "locative": "v Chomutově a okolí",
+      "region": "Ústecký kraj",
+      "intro": "Chomutovsko je rozmanitý trh – od bytů v centru měst po domy v podkrušnohorských obcích. Odhad vám zpracujeme podle skutečných cen v dané lokalitě.",
+      "areas": [
+        "Chomutov",
+        "Jirkov",
+        "Kadaň",
+        "Klášterec nad Ohří",
+        "Vejprty",
+        "Údlice"
+      ]
+    },
+    {
+      "slug": "praha-stredocesky-kraj",
+      "name": "Praha a Středočeský kraj",
+      "locative": "v Praze a Středočeském kraji",
+      "region": "střední Čechy",
+      "intro": "Ceny nemovitostí v Praze a jejím okolí se mění od ulice k ulici. Pomůžeme vám určit realistickou cenu bytu, domu či pozemku v Praze i ve Středočeském kraji.",
+      "areas": [
+        "Praha",
+        "Kladno",
+        "Mladá Boleslav",
+        "Beroun",
+        "Kolín",
+        "Mělník",
+        "Příbram",
+        "Říčany"
+      ]
+    }
+  ],
   "team": {
     "intro": "Za naší kanceláří stojí tým makléřů, kteří trh znají z praxe. S vámi bude jednat konkrétní člověk od odhadu až po případný prodej.",
     "members": [
       {
-        "name": "[DOPLNIT] Jméno Příjmení",
-        "role": "Vedoucí kanceláře, realitní makléř",
+        "name": "Soňa Petříková",
+        "role": "[DOPLNIT] pozice",
         "bio": "[DOPLNIT] Krátké bio – zkušenosti, specializace, lokality.",
         "photo": "",
-        "phone": "",
+        "phone": "603 382 392",
         "email": ""
       },
       {
-        "name": "[DOPLNIT] Jméno Příjmení",
-        "role": "Realitní makléř",
+        "name": "Vít Čirik",
+        "role": "[DOPLNIT] pozice",
         "bio": "[DOPLNIT] Krátké bio.",
         "photo": "",
-        "phone": "",
-        "email": ""
-      },
-      {
-        "name": "[DOPLNIT] Jméno Příjmení",
-        "role": "Realitní makléř",
-        "bio": "[DOPLNIT] Krátké bio.",
-        "photo": "",
-        "phone": "",
+        "phone": "776 686 776",
         "email": ""
       }
     ]
@@ -164,7 +211,7 @@
   "about": {
     "title": "O naší kanceláři",
     "paragraphs": [
-      "[DOPLNIT] Představení kanceláře – od kdy působí, na co se specializuje, v jakých lokalitách.",
+      "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje.",
       "[DOPLNIT] Čím se kancelář liší, jaké hodnoty vyznává, jak pracuje s klienty."
     ],
     "values": [
@@ -312,17 +359,5 @@
   "analytics": {
     "_info": "Měřicí kód se načte JEN po souhlasu s cookies. Vyplň např. Google Analytics ID (G-XXXXXXX), jinak nic nenačítá.",
     "gaId": ""
-  },
-  "_locationsExample": {
-    "_info": "Stránky lokalit pro lokální SEO. Přesuň objekt do pole 'locations' a vyplň; pro každou vznikne /odhad-nemovitosti-<slug>/.",
-    "slug": "mesto",
-    "name": "Město",
-    "locative": "v Městě",
-    "region": "Kraj",
-    "intro": "Krátký úvod o realitním trhu v lokalitě.",
-    "areas": [
-      "Část 1",
-      "Část 2"
-    ]
   }
 }
