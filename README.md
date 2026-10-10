@@ -49,4 +49,4 @@ Vše ostatní zůstane beze změny.
 - Právní stránky jsou šablony → nechat zkontrolovat právníkem.
 - `og-image.svg` nahradit PNG 1200×630 (sociální sítě SVG nezobrazují).
 - Doplnit logo, favicon, fotky týmu, IČO, sídlo, e-maily.
-- Google Fonts raději nenačítat z CDN (GDPR) – fonty hostovat lokálně.
+- Font Space Grotesk je hostovaný lokálně (static/assets/fonts), ne z Google CDN.

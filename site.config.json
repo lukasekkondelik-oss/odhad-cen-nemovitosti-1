@@ -5,8 +5,8 @@
   "brand": {
     "name": "ALFA ESTATE",
     "tagline": "Odhad ceny nemovitosti zdarma",
-    "logo": "",
-    "logoAlt": "Logo kanceláře",
+    "logo": "/assets/logo.png",
+    "logoAlt": "ALFA ESTATE – V&S Partners",
     "favicon": "/assets/favicon.svg",
     "ogImage": "/assets/og-image.svg"
   },
@@ -23,8 +23,8 @@
     "onPrimary": "#ffffff",
     "onAccent": "#182535",
     "radius": "10px",
-    "fontBody": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
-    "fontHeading": "system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+    "fontBody": "'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
+    "fontHeading": "'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     "fontStylesheet": "",
     "accentText": "#7a6c4f",
     "divider": "#334050"
@@ -80,19 +80,23 @@
   "stats": [
     {
       "value": "16+",
-      "label": "let zkušeností"
+      "label": "let zkušeností",
+      "icon": "chart"
     },
     {
       "value": "550+",
-      "label": "prodaných nemovitostí"
+      "label": "prodaných nemovitostí",
+      "icon": "building"
     },
     {
       "value": "900+",
-      "label": "realizovaných pronájmů"
+      "label": "realizovaných pronájmů",
+      "icon": "key"
     },
     {
       "value": "1200+",
-      "label": "spokojených klientů"
+      "label": "spokojených klientů",
+      "icon": "check"
     }
   ],
   "steps": [

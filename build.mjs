@@ -17,6 +17,15 @@ const initials = (n) =>
   n.replace('[DOPLNIT]', '').trim().split(/\s+/).map((w) => w[0] || '').slice(0, 2).join('').toUpperCase() || '?';
 const mdLinks = (s) => esc(s).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 const warnings = new Set();
+// Ikony (Lucide, licence ISC) – inline SVG, dědí barvu přes currentColor
+const ICONS = {
+  chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/>',
+  building: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+  key: '<path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>',
+  check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>'
+};
+const icon = (n) =>
+  ICONS[n] ? `<span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]}</svg></span>` : '';
 
 // ---------- helpery vkládané do šablon ({{@nazev}}) ----------
 const helpers = {
@@ -24,11 +33,11 @@ const helpers = {
 
   logo: () =>
     cfg.brand.logo
-      ? `<img src="${esc(cfg.brand.logo)}" alt="${esc(cfg.brand.logoAlt)}" height="40">`
+      ? `<img src="${esc(cfg.brand.logo)}" alt="${esc(cfg.brand.logoAlt)}" width="158" height="58">`
       : `<span class="wordmark">${esc(cfg.brand.name)}</span>`,
 
   stats: () =>
-    cfg.stats.map((s) => `<div class="stat"><strong>${esc(s.value)}</strong><span>${esc(s.label)}</span></div>`).join(''),
+    cfg.stats.map((s) => `<div class="stat">${icon(s.icon)}<strong>${esc(s.value)}</strong><span class="lbl">${esc(s.label)}</span></div>`).join(''),
 
   steps: () =>
     cfg.steps
