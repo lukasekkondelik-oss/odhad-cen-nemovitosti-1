@@ -1,30 +1,16 @@
 <!--meta {
   "path": "/o-nas/",
-  "title": "O nás – realitní kancelář a náš tým makléřů",
-  "description": "Poznejte realitní kancelář a makléře, kteří vám pomohou s odhadem ceny i prodejem nemovitosti. Zkušenosti, lokální znalost a osobní přístup.",
+  "title": "O nás – certifikovaná realitní kancelář a náš tým makléřů",
+  "description": "Certifikovaná realitní kancelář, člen Realitní komory ČR, s více než 16 lety praxe. Poznejte makléře Soňu Petříkovou a Víta Čirika.",
   "crumb": "O nás",
   "priority": 0.7
 } -->
-<section class="page-head"><div class="container narrow">
-  <h1>{{about.title}}</h1>
-</div></section>
+{{@aboutIntroH1}}
 
-<section class="section"><div class="container narrow prose">
-  <p>{{about.paragraphs.0}}</p>
-  <p>{{about.paragraphs.1}}</p>
-  <p><a class="btn btn-outline" href="{{company.mainSite}}" rel="noopener" target="_blank">Hlavní web {{company.mainSiteLabel}} ↗</a></p>
-</div></section>
+<section class="stats"><div class="container stats-grid">{{@stats}}</div></section>
 
-<section class="section alt"><div class="container">
-  <h2>Na čem si zakládáme</h2>
-  <div class="cards">{{@values}}</div>
-</div></section>
-
-<section class="section"><div class="container">
-  <h2>Náš tým</h2>
-  <p class="section-lead">{{team.intro}}</p>
-  <div class="team">{{@team}}</div>
-</div></section>
+<section class="section team-head">{{@teamHead}}</section>
+{{@team}}
 
 <section class="cta-band"><div class="container">
   <h2>Chcete vědět, kolik vaše nemovitost stojí?</h2>

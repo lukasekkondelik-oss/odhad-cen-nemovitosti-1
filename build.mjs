@@ -22,10 +22,26 @@ const ICONS = {
   chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/>',
   building: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
   key: '<path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>',
-  check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>'
+  check: '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+  tick: '<path d="M20 6 9 17l-5-5"/>',
+  phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
+  mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'
 };
+const svg = (n, w = 1.75) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
 const icon = (n) =>
   ICONS[n] ? `<span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]}</svg></span>` : '';
+
+function aboutIntro(h) {
+  const a = cfg.about;
+  return `<section class="section about-intro"><div class="container profile-grid">
+  <div class="photo-frame"><img src="${esc(a.photo)}" alt="${esc(a.photoAlt)}" loading="lazy">${a.badge ? `<div class="badge"><strong>${esc(a.badge.value)}</strong><span>${esc(a.badge.label)}</span></div>` : ''}</div>
+  <div class="profile-text"><p class="eyebrow">${esc(a.eyebrow)}</p><${h}>${esc(a.titleLead)} <em>${esc(a.titleAccent)}</em></${h}><div class="rule"></div>
+  <blockquote class="quote">„${esc(a.quote)}“</blockquote>
+  ${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}
+  <ul class="checks">${a.checks.map((x) => `<li><span class="tick">${svg('tick', 2.5)}</span>${esc(x)}</li>`).join('')}</ul>
+  <p class="btn-row"><a class="btn btn-accent" href="/kontakt/">${esc(a.cta)}</a> <a class="btn btn-outline" href="${esc(cfg.company.mainSite)}" rel="noopener" target="_blank">${esc(cfg.company.mainSiteLabel)} ↗</a></p></div></div></section>`;
+}
 
 // ---------- helpery vkládané do šablon ({{@nazev}}) ----------
 const helpers = {
@@ -65,17 +81,31 @@ const helpers = {
   locationsBlock: () =>
     cfg.locations.length ? `<p class="footer-title">Lokality</p><p class="chips">${helpers.locations()}</p>` : '',
 
+  aboutIntro: () => aboutIntro('h2'),
+  aboutIntroH1: () => aboutIntro('h1'),
+
+  teamHead: () =>
+    `<div class="section-head"><p class="eyebrow">${esc(cfg.team.eyebrow)}</p><h2>${esc(cfg.team.title)}</h2><div class="rule rule-center"></div><p class="section-lead">${esc(cfg.team.intro)}</p></div>`,
+
   team: () =>
     cfg.team.members
-      .map((m) => {
+      .map((m, i) => {
+        const rev = i % 2 === 1;
         const photo = m.photo
-          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy" width="160" height="160">`
-          : `<div class="avatar" aria-hidden="true">${esc(initials(m.name))}</div>`;
+          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy">`
+          : `<div class="avatar-lg" aria-hidden="true">${esc(initials(m.name))}</div>`;
+        const stats = (m.stats || []).map((x) => `<div class="mini-stat"><strong>${esc(x.value)}</strong><span>${esc(x.label)}</span></div>`).join('');
         const contact = [
-          m.phone && `<a href="tel:${esc(m.phone.replace(/\s/g, ''))}">${esc(m.phone)}</a>`,
-          m.email && `<a href="mailto:${esc(m.email)}">${esc(m.email)}</a>`
-        ].filter(Boolean).join('<br>');
-        return `<article class="person">${photo}<h3>${esc(m.name)}</h3><p class="role">${esc(m.role)}</p><p>${esc(m.bio)}</p>${contact ? `<p class="contact">${contact}</p>` : ''}</article>`;
+          m.phone && `<a href="tel:${esc(m.phone.replace(/\s/g, ''))}">${svg('phone')}${esc(m.phone)}</a>`,
+          m.email && `<a href="mailto:${esc(m.email)}">${svg('mail')}${esc(m.email)}</a>`
+        ].filter(Boolean).join('');
+        return `<section class="profile${rev ? ' profile-rev alt' : ''}"><div class="container profile-grid">
+  <div class="photo-frame${rev ? ' photo-frame-rev' : ''}">${photo}${m.badge ? `<div class="badge"><strong>${esc(m.badge.value)}</strong><span>${esc(m.badge.label)}</span></div>` : ''}</div>
+  <article class="profile-text"><p class="eyebrow">${esc(m.role)}</p><h3>${esc(m.name)}</h3><div class="rule"></div>
+  ${m.quote ? `<blockquote class="quote">„${esc(m.quote)}“</blockquote>` : ''}
+  ${(m.bio || []).map((p) => `<p>${esc(p)}</p>`).join('')}
+  ${stats ? `<div class="mini-stats">${stats}</div>` : ''}
+  ${contact ? `<p class="contact-line">${contact}</p>` : ''}</article></div></section>`;
       })
       .join(''),
 

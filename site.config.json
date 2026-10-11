@@ -26,7 +26,7 @@
     "border": "#dde1e7",
     "onPrimary": "#ffffff",
     "onAccent": "#182535",
-    "radius": "10px",
+    "radius": "2px",
     "fontBody": "'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     "fontHeading": "'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif",
     "fontStylesheet": "",
@@ -195,46 +195,93 @@
     }
   ],
   "team": {
-    "intro": "Za naší kanceláří stojí tým makléřů, kteří trh znají z praxe. S vámi bude jednat konkrétní člověk od odhadu až po případný prodej.",
+    "eyebrow": "Lidé za značkou",
+    "title": "Náš tým",
+    "intro": "Dva odborníci, jeden cíl — výsledek, který předčí vaše očekávání.",
     "members": [
       {
         "name": "Soňa Petříková",
-        "role": "[DOPLNIT] pozice",
-        "bio": "[DOPLNIT] Krátké bio – zkušenosti, specializace, lokality.",
-        "photo": "",
+        "role": "Certifikovaná realitní makléřka",
+        "photo": "/assets/team/sona-petrikova.jpg",
+        "quote": "Každou nemovitost řeším srdcem, každého klienta s respektem.",
+        "bio": [
+          "Jsem certifikovaná realitní makléřka s více než šestnáctiletou zkušeností na realitním trhu v Karlovarském kraji. Za dobu své praxe jsem se podílela na prodeji více než 550 nemovitostí a realizaci více než 900 pronájmů.",
+          "Ke každému klientovi přistupuji individuálně, s maximální péčí, respektem a důrazem na osobní přístup. Zakládám si na zkušenostech, spolehlivosti, diskrétnosti a schopnosti hledat řešení, která vedou k úspěšnému výsledku. Každá nemovitost i každý klient má svůj vlastní příběh — a právě proto věřím, že si zaslouží individuální strategii i nadstandardní servis. Domluvím se také německy a anglicky, takže ráda pomohu i zahraničním klientům."
+        ],
+        "stats": [
+          {
+            "value": "16+",
+            "label": "Let praxe"
+          },
+          {
+            "value": "550+",
+            "label": "Prodaných nemovitostí"
+          },
+          {
+            "value": "900+",
+            "label": "Pronájmů"
+          }
+        ],
+        "badge": {
+          "value": "550+",
+          "label": "prodaných nemovitostí"
+        },
         "phone": "603 382 392",
-        "email": ""
+        "email": "alfaestate@alfaestate.cz"
       },
       {
         "name": "Vít Čirik",
-        "role": "[DOPLNIT] pozice",
-        "bio": "[DOPLNIT] Krátké bio.",
-        "photo": "",
+        "role": "Realitní makléř & stavební specialista",
+        "photo": "/assets/team/vit-cirik.jpg",
+        "quote": "Reality jsou pro mě víc než obor — jsou mou skutečnou vášní.",
+        "bio": [
+          "Každodenně sleduji realitní trh, vyhledávám výjimečné obchodní příležitosti a hledám řešení, která přinášejí klientům i naší společnosti skutečnou hodnotu.",
+          "Specializuji se na rekonstrukce, investice a výstavbu domů na klíč, které mám v rámci společnosti na starosti. Ke každému projektu přistupuji s důrazem na detail, kvalitu provedení a dlouhodobý smysl celé investice. Zakládám si na důvěře, spolehlivosti a osobním přístupu — každou spolupráci vnímám jako závazek poskytnout profesionální servis na vysoké úrovni."
+        ],
+        "stats": [
+          {
+            "value": "50+",
+            "label": "Realizací staveb"
+          },
+          {
+            "value": "100%",
+            "label": "Na klíč"
+          },
+          {
+            "value": "16+",
+            "label": "Let v oboru"
+          }
+        ],
+        "badge": {
+          "value": "50+",
+          "label": "realizací staveb"
+        },
         "phone": "776 686 776",
-        "email": ""
+        "email": "alfaestate@alfaestate.cz"
       }
     ]
   },
   "about": {
-    "title": "O naší kanceláři",
+    "eyebrow": "O naší kanceláři",
+    "titleLead": "Reality s",
+    "titleAccent": "osobním přístupem",
+    "quote": "Reality nejsou jen obchod. Jsou to životní příběhy, nové začátky a zásadní rozhodnutí.",
     "paragraphs": [
-      "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje.",
-      "[DOPLNIT] Čím se kancelář liší, jaké hodnoty vyznává, jak pracuje s klienty."
+      "Jsme certifikovaná realitní kancelář, členové Realitní komory České republiky, s více než šestnáctiletou praxí v oboru. Za tuto dobu jsme si vybudovali styl práce založený na důvěře, osobním přístupu a precizním vedení každého obchodu — od prvního kontaktu až po úspěšné předání nemovitosti."
     ],
-    "values": [
-      {
-        "title": "Férovost",
-        "text": "Říkáme klientovi realistickou cenu, ne tu, kterou chce slyšet."
-      },
-      {
-        "title": "Lokální znalost",
-        "text": "Víme, co se v okolí skutečně prodává a za kolik."
-      },
-      {
-        "title": "Osobní přístup",
-        "text": "Máte jednoho makléře, který vás celým procesem provede."
-      }
-    ]
+    "checks": [
+      "Certifikovaná kancelář, člen Realitní komory ČR",
+      "Individuální strategie a plný servis od A do Z",
+      "Právní servis včetně advokátní úschovy",
+      "Výstavba rodinných domů na klíč"
+    ],
+    "photo": "/assets/team/kancelar.jpg",
+    "photoAlt": "Soňa Petříková a Vít Čirik, ALFA ESTATE V&S Partners",
+    "badge": {
+      "value": "16+",
+      "label": "let zkušeností"
+    },
+    "cta": "Kontaktujte nás"
   },
   "faq": [
     {
