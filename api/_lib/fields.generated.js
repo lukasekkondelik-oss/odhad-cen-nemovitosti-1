@@ -5,11 +5,11 @@ export default {
     "legalName": "ALFA ESTATE V&S Partners s.r.o.",
     "ico": "10799796",
     "dic": "[DOPLNIT] (CZ10799796, pokud je plátce DPH)",
-    "address": "Majakovského 707/29, Rybáře, 360 05 Karlovy Vary",
-    "street": "Majakovského 707/29, Rybáře",
+    "address": "V. Meerwalda 57/8, 360 06 Karlovy Vary – Dvory",
+    "street": "Majakovského 707/29",
     "city": "Karlovy Vary",
     "zip": "360 05",
-    "register": "[DOPLNIT] Zapsána v obchodním rejstříku vedeném u [DOPLNIT] soudu, oddíl C, vložka [DOPLNIT]",
+    "register": "Zapsána v živnostenském rejstříku (živnostenský úřad: Magistrát města Karlovy Vary). Zápis v obchodním rejstříku: [DOPLNIT soud, oddíl C, vložka].",
     "phone": "+420 603 382 392",
     "email": "alfaestate@alfaestate.cz",
     "privacyEmail": "alfaestate@alfaestate.cz",
@@ -36,7 +36,8 @@ export default {
         "days": "Ne",
         "time": "zavřeno"
       }
-    ]
+    ],
+    "officeAddress": "Majakovského 707/29, 360 05 Karlovy Vary – Rybáře"
   },
   "fields": [
     {
