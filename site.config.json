@@ -1,5 +1,7 @@
 {
   "_info": "JEDINÝ soubor, který upravuješ pro brand, texty, tým a formulář. Hodnoty '[DOPLNIT]' build vypíše jako varování.",
+  "indexing": false,
+  "_indexingInfo": "false = web je skrytý před vyhledávači (noindex + robots Disallow, bez sitemap). Před ostrým spuštěním přepni na true.",
   "siteUrl": "https://odhad.example.cz",
   "lang": "cs",
   "brand": {

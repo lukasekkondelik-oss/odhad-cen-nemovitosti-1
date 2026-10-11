@@ -45,6 +45,11 @@ Lead jde první, selhání potvrzení klientovi ho neztratí.
 Nastav `LEAD_WEBHOOK_URL` na Custom webhook v Make. Funkce pošle JSON s poli formuláře.
 Vše ostatní zůstane beze změny.
 
+## Neveřejné zobrazení (před spuštěním)
+- `indexing: false` v `site.config.json` (výchozí) přidá `noindex`, `Disallow: /` v robots.txt a vynechá sitemap, takže web Google nenajde.
+- Pro omezení přístupu používej Vercel Deployment Protection (Settings → Deployment Protection); náhledy větví jsou chráněné přihlášením do Vercelu.
+- Při ostrém spuštění přepni `indexing` na `true`.
+
 ## Před spuštěním
 - Právní stránky jsou šablony → nechat zkontrolovat právníkem.
 - `og-image.svg` nahradit PNG 1200×630 (sociální sítě SVG nezobrazují).

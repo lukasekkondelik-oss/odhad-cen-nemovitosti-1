@@ -217,7 +217,7 @@ function emit(meta, body, extraCtx = {}) {
     ...meta,
     url: base + urlPath,
     ogImage: base + cfg.brand.ogImage,
-    robots: meta.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'
+    robots: meta.noindex || !cfg.indexing ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
   };
   const ctx = { site: cfg, brand: cfg.brand, company: cfg.company, hero: cfg.hero, about: cfg.about, team: cfg.team, form: cfg.form, page, ...extraCtx };
   const content = render(body, ctx);
@@ -261,15 +261,20 @@ fs.writeFileSync(
 :root{--c-primary:${t.primary};--c-primary-dark:${t.primaryDark};--c-accent:${t.accent};--c-accent-dark:${t.accentDark};--c-accent-text:${t.accentText};--c-divider:${t.divider};--c-footer-text:${t.footerText};--c-footer-link:${t.footerLink};--c-footer-muted:${t.footerMuted};--c-footer-line:${t.footerLine};--c-bg:${t.background};--c-surface:${t.surface};--c-text:${t.text};--c-muted:${t.muted};--c-border:${t.border};--c-on-primary:${t.onPrimary};--c-on-accent:${t.onAccent};--radius:${t.radius};--font-body:${t.fontBody};--font-heading:${t.fontHeading}}\n`
 );
 
-// sitemap + robots
+// sitemap + robots (jen pokud je web ostrý, jinak se skryje před vyhledávači)
 const today = new Date().toISOString().slice(0, 10);
-fs.writeFileSync(
-  path.join(DIST, 'sitemap.xml'),
-  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages
-    .map((p) => `  <url><loc>${p.loc}</loc><lastmod>${today}</lastmod><priority>${p.priority}</priority></url>`)
-    .join('\n')}\n</urlset>\n`
-);
-fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${base}/sitemap.xml\n`);
+if (cfg.indexing) {
+  fs.writeFileSync(
+    path.join(DIST, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${pages
+      .map((p) => `  <url><loc>${p.loc}</loc><lastmod>${today}</lastmod><priority>${p.priority}</priority></url>`)
+      .join('\n')}\n</urlset>\n`
+  );
+  fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${base}/sitemap.xml\n`);
+} else {
+  fs.writeFileSync(path.join(DIST, 'robots.txt'), 'User-agent: *\nDisallow: /\n');
+  warnings.add('indexing=false: web je SKRYTÝ před vyhledávači (před spuštěním přepni na true)');
+}
 
 // pole formuláře pro serverless funkci (validace na straně serveru)
 fs.mkdirSync(path.join(ROOT, 'api', '_lib'), { recursive: true });
