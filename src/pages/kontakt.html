@@ -10,9 +10,10 @@
   <div class="prose">
     <h2>{{company.legalName}}</h2>
     <p>{{company.address}}</p>
-    <p><strong>Telefon:</strong> <a href="tel:{{company.phone}}">{{company.phone}}</a><br>
-    <strong>E-mail:</strong> <a href="mailto:{{company.email}}">{{company.email}}</a><br>
-    <strong>Otevírací doba:</strong> {{company.openingHours}}</p>
+    <p class="phone-line"><strong>Telefon:</strong> {{@phoneLine}}</p>
+    <p><strong>E-mail:</strong> <a href="mailto:{{company.email}}">{{company.email}}</a></p>
+    <p style="margin-bottom:.3em"><strong>Otevírací doba:</strong></p>
+    {{@hours}}
     <p>IČO: {{company.ico}}<br>DIČ: {{company.dic}}</p>
     <p class="small">{{company.register}}</p>
     <p><a href="{{company.mainSite}}" rel="noopener" target="_blank">Hlavní web {{company.mainSiteLabel}} ↗</a></p>

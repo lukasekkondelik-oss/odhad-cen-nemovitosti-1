@@ -209,3 +209,12 @@ h1,h2,h3{font-weight:500}
 .loc-title+.chips{margin-top:14px}
 .hero-grid{align-items:center}
 .page-head .lead{max-width:64ch}
+
+.phone-line .who{display:block;font-size:.85rem;color:var(--c-footer-muted);margin-top:2px}
+.prose .phone-line .who{color:var(--c-muted)}
+.footer-title-sub{margin-top:28px}
+.hours{list-style:none;padding:0;margin:0 0 1em}
+.hours li{display:flex;gap:16px;padding:4px 0}
+.hours strong{min-width:3.6em;color:#fff;font-weight:600}
+.prose .hours strong{color:var(--c-text)}
+.prose .hours{padding-left:0}

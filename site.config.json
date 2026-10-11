@@ -51,14 +51,28 @@
     "privacyEmail": "alfaestate@alfaestate.cz",
     "mainSite": "https://alfaestate.cz/",
     "mainSiteLabel": "alfaestate.cz",
-    "openingHours": "Po–Pá 9:00–17:00 · So dle dohody · Ne zavřeno",
     "social": {
       "facebook": "",
       "instagram": "",
       "linkedin": ""
     },
     "openingHoursSchema": "Mo-Fr 09:00-17:00",
-    "summary": "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje."
+    "summary": "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje.",
+    "phoneName": "Soňa Petříková",
+    "hours": [
+      {
+        "days": "Po–Pá",
+        "time": "9:00–17:00"
+      },
+      {
+        "days": "So",
+        "time": "dle dohody"
+      },
+      {
+        "days": "Ne",
+        "time": "zavřeno"
+      }
+    ]
   },
   "nav": [
     {

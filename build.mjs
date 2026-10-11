@@ -58,6 +58,14 @@ const helpers = {
       ? `<img src="${esc(cfg.brand.logo)}" alt="${esc(cfg.brand.logoAlt)}" width="158" height="58">`
       : `<span class="wordmark">${esc(cfg.brand.name)}</span>`,
 
+  phoneLine: () => {
+    const c = cfg.company;
+    return `<a href="tel:${esc(c.phone.replace(/\s/g, ''))}">${esc(c.phone)}</a>${c.phoneName ? `<span class="who">${esc(c.phoneName)}</span>` : ''}`;
+  },
+
+  hours: () =>
+    `<ul class="hours">${cfg.company.hours.map((h) => `<li><strong>${esc(h.days)}</strong> <span>${esc(h.time)}</span></li>`).join('')}</ul>`,
+
   logoLight: () =>
     cfg.brand.logoLight
       ? `<img src="${esc(cfg.brand.logoLight)}" alt="${esc(cfg.brand.logoAlt)}" width="170" height="63" loading="lazy">`
@@ -182,7 +190,7 @@ function jsonLd(page, loc) {
     telephone: c.phone,
     email: c.email,
     description: cfg.brand.tagline,
-    openingHours: c.openingHoursSchema || c.openingHours,
+    openingHours: c.openingHoursSchema,
     address: {
       '@type': 'PostalAddress',
       streetAddress: c.street,
