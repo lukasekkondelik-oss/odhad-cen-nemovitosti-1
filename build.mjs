@@ -1,6 +1,7 @@
 // Zero-dependency statický generátor: src/ + site.config.json -> dist/
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
@@ -17,6 +18,11 @@ const initials = (n) =>
   n.replace('[DOPLNIT]', '').trim().split(/\s+/).map((w) => w[0] || '').slice(0, 2).join('').toUpperCase() || '?';
 const mdLinks = (s) => esc(s).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 const warnings = new Set();
+const ver = crypto
+  .createHash('sha1')
+  .update(read('static/css/style.css') + read('static/js/main.js') + JSON.stringify(cfg.theme))
+  .digest('hex')
+  .slice(0, 8);
 // Ikony (Lucide, licence ISC) – inline SVG, dědí barvu přes currentColor
 const ICONS = {
   chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/>',
@@ -27,10 +33,10 @@ const ICONS = {
   phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>',
   mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>'
 };
-const svg = (n, w = 1.75) =>
-  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+const svg = (n, w = 1.75, size = 20) =>
+  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
 const icon = (n) =>
-  ICONS[n] ? `<span class="stat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">${ICONS[n]}</svg></span>` : '';
+  ICONS[n] ? `<span class="stat-icon" aria-hidden="true">${svg(n, 1.75, 26)}</span>` : '';
 
 function aboutIntro(h) {
   const a = cfg.about;
@@ -39,7 +45,7 @@ function aboutIntro(h) {
   <div class="profile-text"><p class="eyebrow">${esc(a.eyebrow)}</p><${h}>${esc(a.titleLead)} <em>${esc(a.titleAccent)}</em></${h}><div class="rule"></div>
   <blockquote class="quote">„${esc(a.quote)}“</blockquote>
   ${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}
-  <ul class="checks">${a.checks.map((x) => `<li><span class="tick">${svg('tick', 2.5)}</span>${esc(x)}</li>`).join('')}</ul>
+  <ul class="checks">${a.checks.map((x) => `<li><span class="tick">${svg('tick', 2.5, 15)}</span>${esc(x)}</li>`).join('')}</ul>
   <p class="btn-row"><a class="btn btn-accent" href="/kontakt/">${esc(a.cta)}</a> <a class="btn btn-outline" href="${esc(cfg.company.mainSite)}" rel="noopener" target="_blank">${esc(cfg.company.mainSiteLabel)} ↗</a></p></div></div></section>`;
 }
 
@@ -86,6 +92,9 @@ const helpers = {
 
   teamHead: () =>
     `<div class="section-head"><p class="eyebrow">${esc(cfg.team.eyebrow)}</p><h2>${esc(cfg.team.title)}</h2><div class="rule rule-center"></div><p class="section-lead">${esc(cfg.team.intro)}</p></div>`,
+
+  locationsHome: () =>
+    cfg.locations.length ? `<h3 class="loc-title">Odhad nemovitosti podle lokality</h3><p class="chips">${helpers.locations()}</p>` : '',
 
   team: () =>
     cfg.team.members
@@ -249,7 +258,7 @@ function emit(meta, body, extraCtx = {}) {
     ogImage: base + cfg.brand.ogImage,
     robots: meta.noindex || !cfg.indexing ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
   };
-  const ctx = { site: cfg, brand: cfg.brand, company: cfg.company, hero: cfg.hero, about: cfg.about, team: cfg.team, form: cfg.form, page, ...extraCtx };
+  const ctx = { ver, site: cfg, brand: cfg.brand, company: cfg.company, hero: cfg.hero, about: cfg.about, team: cfg.team, form: cfg.form, page, ...extraCtx };
   const content = render(body, ctx);
   const html = render(fs.readFileSync(path.join(SRC, 'layout.html'), 'utf8').replace('{{{content}}}', () => content), ctx);
   const outFile = meta.file ? path.join(DIST, meta.file) : path.join(DIST, urlPath, 'index.html');

@@ -205,3 +205,7 @@ h1,h2,h3{font-weight:500}
 .profile-text p.eyebrow{color:var(--c-accent)}
 .profile-text h3{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-bottom:0}
 .about-intro h1,.about-intro h2{font-size:clamp(2.2rem,4.6vw,3.4rem);margin:10px 0 0}
+.loc-title{margin:44px 0 0;font-size:1.1rem}
+.loc-title+.chips{margin-top:14px}
+.hero-grid{align-items:center}
+.page-head .lead{max-width:64ch}
