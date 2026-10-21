@@ -72,6 +72,31 @@ const helpers = {
   servicesLinks: () =>
     cfg.services.map((x) => `<a href="${esc(x.href)}">${esc(x.title)}</a>`).join('<br>'),
 
+  cookieBanner: () => (cfg.analytics.gaId ? partial('cookie-banner') : ''),
+
+  cookieSettings: () =>
+    cfg.analytics.gaId ? ' · <button type="button" class="linklike" data-cookie-settings>Nastavení cookies</button>' : '',
+
+  cookiesBody: () =>
+    cfg.analytics.gaId
+      ? `<h2>Co jsou cookies</h2>
+<p>Cookies jsou malé soubory, které si webová stránka ukládá ve vašem prohlížeči. Slouží k fungování webu a k měření návštěvnosti.</p>
+<h2>Jaké používáme</h2>
+<ul>
+  <li><strong>Technicky nezbytné</strong> – uložení vaší volby souhlasu s cookies v úložišti prohlížeče (klíč <code>cookie_consent</code>). K jejich použití souhlas nepotřebujeme.</li>
+  <li><strong>Analytické</strong> – měření návštěvnosti webu pomocí služby Google Analytics. Načtou se <em>pouze</em> po vašem souhlasu.</li>
+</ul>
+<h2>Změna souhlasu</h2>
+<p>Svou volbu můžete kdykoli změnit: <button type="button" class="linklike" data-cookie-settings>otevřít nastavení cookies</button>. Cookies můžete také kdykoli smazat v nastavení svého prohlížeče.</p>`
+      : `<h2>Co jsou cookies</h2>
+<p>Cookies jsou malé soubory, které si webová stránka ukládá ve vašem prohlížeči. Slouží například k fungování webu nebo k měření návštěvnosti.</p>
+<h2>Používáme je?</h2>
+<p>Tento web <strong>nepoužívá žádné analytické, marketingové ani reklamní cookies</strong> a nenačítá nástroje třetích stran, které by cookies ukládaly. Proto vás také nežádáme o souhlas a nezobrazujeme cookie lištu.</p>
+<h2>Budoucí změny</h2>
+<p>Pokud na webu v budoucnu začneme používat nástroje pro měření návštěvnosti nebo jiné nepovinné cookies, požádáme vás předem o souhlas a tuto stránku aktualizujeme.</p>
+<h2>Jak cookies smazat nebo zakázat</h2>
+<p>Ukládání cookies můžete kdykoli omezit nebo uložené cookies smazat v nastavení svého internetového prohlížeče.</p>`,
+
   hours: () =>
     `<ul class="hours">${cfg.company.hours.map((h) => `<li><strong>${esc(h.days)}</strong> <span>${esc(h.time)}</span></li>`).join('')}</ul>`,
 
