@@ -9,7 +9,7 @@
     <div>
       <p class="footer-title">Kontakt</p>
       <p>{{company.officeAddress}}</p>
-      <p class="phone-line">{{@phoneLine}}</p>
+      {{@contacts}}
       <p><a href="mailto:{{company.email}}">{{company.email}}</a></p>
       <p class="footer-title footer-title-sub">Otevírací doba</p>
       {{@hours}}
@@ -17,7 +17,7 @@
     </div>
     <div>
       <p class="footer-title">Služby</p>
-      <p><a href="/odhad-ceny-bytu/">Odhad ceny bytu</a><br><a href="/odhad-ceny-domu/">Odhad ceny domu</a><br><a href="/odhad-ceny-pozemku/">Odhad ceny pozemku</a></p>
+      <p>{{@servicesLinks}}</p>
       {{@locationsBlock}}
     </div>
     <div>

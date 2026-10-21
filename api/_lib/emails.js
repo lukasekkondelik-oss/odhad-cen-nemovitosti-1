@@ -6,7 +6,7 @@ const wrap = (inner, site) => `<!doctype html><html lang="cs"><body style="margi
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#fff;border-radius:10px;overflow:hidden">
 <tr><td style="background:#182535;color:#fff;padding:20px 28px;font-size:20px;font-weight:bold">${esc(site.brand)}</td></tr>
 <tr><td style="padding:28px;font-size:15px;line-height:1.6">${inner}</td></tr>
-<tr><td style="padding:16px 28px;background:#f5f6f8;font-size:12px;color:#5b6574">${esc(site.company.legalName)} · IČO ${esc(site.company.ico)} · ${esc(site.company.address)}<br>${esc(site.company.phone)} · ${esc(site.company.email)}</td></tr>
+<tr><td style="padding:16px 28px;background:#f5f6f8;font-size:12px;color:#5b6574">${esc(site.company.legalName)} · IČO ${esc(site.company.ico)} · ${esc(site.company.address)}<br>${esc(site.company.phonesText)} · ${esc(site.company.email)}</td></tr>
 </table></td></tr></table></body></html>`;
 
 const rows = (items) =>
@@ -33,7 +33,7 @@ export function clientEmail({ data, labelled, site }) {
 
 // ---- E-MAIL MAKLÉŘCE (nový lead k provolání) ----
 export function agentEmail({ data, labelled, meta, site }) {
-  const subject = `🔔 Nový lead – odhad: ${data.name}, ${data.phone || data.email}`;
+  const subject = `🔔 Nový lead – ${data.serviceType || 'odhad'}: ${data.name}, ${data.phone || data.email}`;
   const contact = [
     { label: 'Jméno', value: data.name },
     { label: 'Telefon', value: data.phone || '—' },

@@ -10,7 +10,8 @@
   <div class="prose">
     <h2>{{company.legalName}}</h2>
     <p><strong>Kancelář:</strong> {{company.officeAddress}}</p>
-    <p class="phone-line"><strong>Telefon:</strong> {{@phoneLine}}</p>
+    <p style="margin-bottom:.3em"><strong>Telefon:</strong></p>
+    {{@contacts}}
     <p><strong>E-mail:</strong> <a href="mailto:{{company.email}}">{{company.email}}</a></p>
     <p style="margin-bottom:.3em"><strong>Otevírací doba:</strong></p>
     {{@hours}}

@@ -22,7 +22,6 @@ export default {
     },
     "openingHoursSchema": "Mo-Fr 09:00-17:00",
     "summary": "Certifikovaná realitní kancelář v Karlových Varech. Člen Realitní komory ČR. Přes 16 let na realitním trhu Karlovarského kraje.",
-    "phoneName": "Soňa Petříková",
     "hours": [
       {
         "days": "Po–Pá",
@@ -37,9 +36,32 @@ export default {
         "time": "zavřeno"
       }
     ],
-    "officeAddress": "Majakovského 707/29, 360 05 Karlovy Vary – Rybáře"
+    "officeAddress": "Majakovského 707/29, 360 05 Karlovy Vary – Rybáře",
+    "contacts": [
+      {
+        "name": "Soňa Petříková",
+        "phone": "+420 603 382 392"
+      },
+      {
+        "name": "Vít Čirik",
+        "phone": "+420 776 686 776"
+      }
+    ],
+    "phonesText": "+420 603 382 392 (Soňa Petříková) · +420 776 686 776 (Vít Čirik)"
   },
   "fields": [
+    {
+      "name": "serviceType",
+      "label": "Co potřebujete",
+      "type": "select",
+      "required": true,
+      "width": "full",
+      "options": [
+        "Tržní odhad ceny nemovitosti",
+        "Odhad pro dědické řízení",
+        "Znalecký posudek (s kulatým razítkem)"
+      ]
+    },
     {
       "name": "propertyType",
       "label": "Typ nemovitosti",
@@ -96,12 +118,11 @@ export default {
     },
     {
       "name": "reason",
-      "label": "Účel odhadu",
+      "label": "Důvod zájmu",
       "type": "select",
       "options": [
         "Chci prodat",
         "Zvažuji prodej",
-        "Dědictví / vypořádání",
         "Jen mě zajímá cena",
         "Jiné"
       ]

@@ -18,6 +18,7 @@ const initials = (n) =>
   n.replace('[DOPLNIT]', '').trim().split(/\s+/).map((w) => w[0] || '').slice(0, 2).join('').toUpperCase() || '?';
 const mdLinks = (s) => esc(s).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
 const warnings = new Set();
+let currentPage = null; // stránka, která se právě renderuje (pro předvolby formuláře)
 const ver = crypto
   .createHash('sha1')
   .update(read('static/css/style.css') + read('static/js/main.js') + JSON.stringify(cfg.theme))
@@ -58,10 +59,18 @@ const helpers = {
       ? `<img src="${esc(cfg.brand.logo)}" alt="${esc(cfg.brand.logoAlt)}" width="158" height="58">`
       : `<span class="wordmark">${esc(cfg.brand.name)}</span>`,
 
-  phoneLine: () => {
-    const c = cfg.company;
-    return `<a href="tel:${esc(c.phone.replace(/\s/g, ''))}">${esc(c.phone)}</a>${c.phoneName ? `<span class="who">${esc(c.phoneName)}</span>` : ''}`;
-  },
+  contacts: () =>
+    `<ul class="contacts">${cfg.company.contacts
+      .map((p) => `<li><a href="tel:${esc(p.phone.replace(/\s/g, ''))}">${esc(p.phone)}</a><span class="who">${esc(p.name)}</span></li>`)
+      .join('')}</ul>`,
+
+  contactsInline: () =>
+    cfg.company.contacts
+      .map((p) => `<a href="tel:${esc(p.phone.replace(/\s/g, ''))}">${esc(p.phone)}</a> (${esc(p.name)})`)
+      .join(', '),
+
+  servicesLinks: () =>
+    cfg.services.map((x) => `<a href="${esc(x.href)}">${esc(x.title)}</a>`).join('<br>'),
 
   hours: () =>
     `<ul class="hours">${cfg.company.hours.map((h) => `<li><strong>${esc(h.days)}</strong> <span>${esc(h.time)}</span></li>`).join('')}</ul>`,
@@ -139,7 +148,7 @@ const helpers = {
       let input;
       if (x.type === 'select') {
         input = `<select id="${id}" name="${esc(x.name)}"${req}><option value="">Vyberte…</option>${x.options
-          .map((o) => `<option>${esc(o)}</option>`).join('')}</select>`;
+          .map((o) => `<option${currentPage && currentPage.preselect && currentPage.preselect[x.name] === o ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`;
       } else if (x.type === 'textarea') {
         input = `<textarea id="${id}" name="${esc(x.name)}" rows="3"${ph}></textarea>`;
       } else {
@@ -187,7 +196,8 @@ function jsonLd(page, loc) {
     url: base + '/',
     logo: cfg.brand.logo ? base + cfg.brand.logo : undefined,
     image: base + cfg.brand.ogImage,
-    telephone: c.phone,
+    telephone: c.contacts.map((p) => p.phone),
+    contactPoint: c.contacts.map((p) => ({ '@type': 'ContactPoint', name: p.name, telephone: p.phone, email: c.email, contactType: 'customer service', areaServed: 'CZ', availableLanguage: ['cs'] })),
     email: c.email,
     description: cfg.brand.tagline,
     openingHours: c.openingHoursSchema,
@@ -222,10 +232,10 @@ function jsonLd(page, loc) {
     graph.push({
       '@type': 'Service',
       name: page.serviceName || page.title,
-      serviceType: 'Odhad ceny nemovitosti',
+      serviceType: page.serviceType || 'Odhad ceny nemovitosti',
       provider: { '@id': `${base}/#organization` },
       areaServed: loc ? { '@type': 'AdministrativeArea', name: loc.name } : undefined,
-      offers: { '@type': 'Offer', price: '0', priceCurrency: 'CZK' }
+      offers: page.paid ? undefined : { '@type': 'Offer', price: '0', priceCurrency: 'CZK' }
     });
   }
   return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
@@ -235,6 +245,7 @@ function jsonLd(page, loc) {
 const partial = (n) => read(`src/partials/${n}.html`);
 
 function render(tpl, ctx) {
+  currentPage = ctx.page || currentPage;
   let out = tpl.replace(/\{\{>\s*([\w-]+)\s*\}\}/g, (_, n) => partial(n));
   out = out.replace(/\{\{@([\w-]+)\}\}/g, (_, n) => {
     if (n === 'jsonld') return jsonLd(ctx.page, ctx.loc);
@@ -328,7 +339,7 @@ fs.mkdirSync(path.join(ROOT, 'api', '_lib'), { recursive: true });
 fs.writeFileSync(
   path.join(ROOT, 'api', '_lib', 'fields.generated.js'),
   '// Generováno buildem z site.config.json – needitovat\nexport default ' +
-    JSON.stringify({ brand: cfg.brand.name, company: cfg.company, fields: cfg.form.fields }, null, 2) + ';\n'
+    JSON.stringify({ brand: cfg.brand.name, company: { ...cfg.company, phonesText: cfg.company.contacts.map((p) => `${p.phone} (${p.name})`).join(' · ') }, fields: cfg.form.fields }, null, 2) + ';\n'
 );
 
 // varování na nedoplněné údaje

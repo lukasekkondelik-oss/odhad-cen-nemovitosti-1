@@ -218,3 +218,9 @@ h1,h2,h3{font-weight:500}
 .hours strong{min-width:3.6em;color:#fff;font-weight:600}
 .prose .hours strong{color:var(--c-text)}
 .prose .hours{padding-left:0}
+
+.contacts{list-style:none;padding:0;margin:0 0 1em}
+.contacts li{margin-bottom:10px}
+.contacts .who{display:block;font-size:.85rem;color:var(--c-footer-muted);margin-top:2px}
+.prose .contacts .who{color:var(--c-muted)}
+.cards{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
