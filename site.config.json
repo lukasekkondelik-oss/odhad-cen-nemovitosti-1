@@ -108,7 +108,7 @@
   ],
   "hero": {
     "title": "Kolik stojí vaše nemovitost? Zjistěte to zdarma a nezávazně",
-    "lead": "Odhad tržní ceny bytu, domu nebo pozemku od zkušených makléřů. Zpracujeme také odhady pro dědické řízení a zajistíme znalecký posudek s kulatým razítkem.",
+    "lead": "Odhad tržní ceny bytu, domu nebo pozemku od zkušených makléřů. Zpracujeme také odhady pro dědické řízení a zajistíme znalecký posudek.",
     "cta": "Chci odhad ceny"
   },
   "stats": [
@@ -170,7 +170,7 @@
     },
     {
       "title": "Znalecký posudek",
-      "text": "Znalecký posudek se znaleckou doložkou a kulatým razítkem pro soud, notáře a další úřední účely.",
+      "text": "Znalecký posudek pro soud, notáře a další úřední účely.",
       "href": "/znalecky-posudek/"
     }
   ],
@@ -328,7 +328,7 @@
     },
     {
       "q": "Jaký je rozdíl mezi tržním odhadem a znaleckým posudkem?",
-      "a": "Tržní odhad určuje cenu, za kterou lze nemovitost realisticky prodat (obvyklou cenu). Znalecký posudek vypracovává znalec zapsaný v seznamu znalců. Je to formální dokument se znaleckou doložkou a otiskem razítka (tzv. kulaté razítko), který se používá tam, kde je potřeba úřední ocenění, například u soudu. Tržní odhad posudek nenahrazuje. Pomůžeme vám vybrat správný druh a v případě potřeby posudek zajistit."
+      "a": "Tržní odhad určuje cenu, za kterou lze nemovitost realisticky prodat (obvyklou cenu). Znalecký posudek vypracovává znalec zapsaný v seznamu znalců. Je to formální dokument se znaleckou doložkou, který se používá tam, kde je potřeba úřední ocenění, například u soudu. Tržní odhad posudek nenahrazuje. Pomůžeme vám vybrat správný druh a v případě potřeby posudek zajistit."
     },
     {
       "q": "Zpracováváte odhady pro dědické řízení?",
@@ -339,7 +339,7 @@
       "a": "Ne vždy. Zákon pro dědické řízení znalecký posudek automaticky nevyžaduje, vyžaduje určení obvyklé ceny, a v řadě případů proto postačí odhad. Konkrétní požadavek určuje notář. Posudek se vyplatí, pokud ho požaduje notář nebo soud, nebo když se dědicové o hodnotě nemovitosti neshodnou."
     },
     {
-      "q": "Kdy potřebuji znalecký posudek s kulatým razítkem?",
+      "q": "Kdy potřebuji znalecký posudek?",
       "a": "Když ho vyžaduje soud, notář, banka nebo jiný úřad. Typicky jde o soudní spory a vypořádání majetku, exekuce, insolvenci a dražby nebo o spor mezi dědici o hodnotu nemovitosti. Banky se liší, některé posudek akceptují, jiné chtějí odhad od vlastního odhadce, proto se předem zeptejte. Pro prodej nebo vlastní rozhodování obvykle stačí tržní odhad."
     },
     {
@@ -369,7 +369,7 @@
         "options": [
           "Tržní odhad ceny nemovitosti",
           "Odhad pro dědické řízení",
-          "Znalecký posudek (s kulatým razítkem)"
+          "Znalecký posudek"
         ]
       },
       {

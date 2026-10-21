@@ -59,7 +59,7 @@ export default {
       "options": [
         "Tržní odhad ceny nemovitosti",
         "Odhad pro dědické řízení",
-        "Znalecký posudek (s kulatým razítkem)"
+        "Znalecký posudek"
       ]
     },
     {
