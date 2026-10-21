@@ -8,6 +8,7 @@ globalThis.fetch = async (url, opts) => {
   return new Response('{}', { status: 200 });
 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'a <a@b.cz>', AGENT_EMAIL: 'makler@b.cz' };
+import cfg from '../api/_lib/fields.generated.js';
 const call = (body, e = env, headers = {}) => processLead({ body, headers, env: e });
 const good = { serviceType: 'Odhad pro dědické řízení', propertyType: 'Byt', address: 'Praha', name: 'Jan <b>Novák</b>', phone: '777 111 222', email: 'jan@test.cz', consent: true, ts: Date.now() - 10000 };
 
@@ -29,5 +30,11 @@ assert.equal((await call({ ...good, email: 'zle' })).status, 400);
 assert.equal((await call({ ...good, propertyType: 'Hrad' })).status, 400);
 assert.equal((await call({ ...good, name: '' })).status, 400);
 assert.equal((await call({ ...good, serviceType: '' })).status, 400);
-assert.equal((await call(good, { ...env, AGENT_EMAIL: '' })).status, 502);
+// bez AGENT_EMAIL a MAIL_FROM jde poptávka na firemní e-mail a odesílá se z odhad@<doména>
+sent.length = 0;
+r = await call(good, { RESEND_API_KEY: 'k' });
+assert.equal(r.status, 200);
+assert.deepEqual(sent[0].body.to, [cfg.company.email], 'výchozí příjemce = firemní e-mail');
+assert.ok(sent[0].body.from.includes('odhad@' + cfg.company.email.split('@')[1]), 'výchozí odesílatel');
+assert.equal((await call(good, {})).status, 502, 'bez API klíče chyba');
 console.log('lead.test OK');

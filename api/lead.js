@@ -60,13 +60,16 @@ export async function processLead({ body, headers = {}, env }) {
   const ctx = { data, labelled, meta, site: cfg };
 
   try {
-    const agents = String(env.AGENT_EMAIL || '').split(',').map((s) => s.trim()).filter(Boolean);
-    if (!agents.length) throw new Error('AGENT_EMAIL není nastaven');
+    // příjemce poptávek: AGENT_EMAIL (volitelně přepíše), jinak firemní e-mail z konfigurace
+    const agents = String(env.AGENT_EMAIL || cfg.company.email || '').split(',').map((s) => s.trim()).filter(Boolean);
+    if (!agents.length) throw new Error('Není nastaven příjemce poptávek');
+    // odesílatel: MAIL_FROM, jinak odhad@<doména firemního e-mailu>
+    const from = env.MAIL_FROM || `${cfg.brand} <odhad@${String(cfg.company.email).split('@')[1]}>`;
 
     // 1) lead pro makléřku – nejdůležitější, jde první
-    await sendMail(env, { to: agents, replyTo: data.email, ...agentEmail(ctx) });
+    await sendMail(env, { from, to: agents, replyTo: data.email, ...agentEmail(ctx) });
     // 2) potvrzení klientovi – selhání neshodí požadavek (lead už je doručen)
-    try { await sendMail(env, { to: [data.email], replyTo: agents[0], ...clientEmail(ctx) }); }
+    try { await sendMail(env, { from, to: [data.email], replyTo: agents[0], ...clientEmail(ctx) }); }
     catch (e) { console.error('client mail failed', e.message); }
     // 3) volitelně webhook (např. Make) – best effort
     if (env.LEAD_WEBHOOK_URL) {

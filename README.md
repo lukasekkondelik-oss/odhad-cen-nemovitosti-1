@@ -24,11 +24,10 @@ npm run dev     # lokálně vč. funkce (vercel dev), potřebuje .env.local podl
 ## Nasazení na Vercel (zdarma, plán Hobby)
 1. Vercel → Add New → Project → importuj tento GitHub repozitář (nebo `vercel` v terminálu).
    Nastavení se načte z `vercel.json` (Build: `node build.mjs`, Output: `dist`, Framework: Other).
-2. Settings → Environment Variables (Production):
-   - `RESEND_API_KEY` – klíč z resend.com (ověř tam doménu odesílatele)
-   - `MAIL_FROM` – např. `Název kanceláře <odhad@domena.cz>`
-   - `AGENT_EMAIL` – e-mail makléřky (více oddělit čárkou)
-   - volitelně `TURNSTILE_SECRET` (CAPTCHA), `LEAD_WEBHOOK_URL` (např. Make, viz níže)
+2. Settings → Environment Variables (Production). **Povinná je jen jedna:**
+   - `RESEND_API_KEY` – klíč z resend.com
+   Poptávky chodí na firemní e-mail z `site.config.json` (`company.email`, tj. alfaestate@alfaestate.cz), odesílatelem je `odhad@<doména>`; doména odesílatele musí být v Resendu ověřená.
+   Volitelně: `MAIL_FROM` (jiný odesílatel, např. z již ověřené domény), `AGENT_EMAIL` (jiný příjemce / více adres), `TURNSTILE_SECRET` (CAPTCHA), `LEAD_WEBHOOK_URL` (např. Make, viz níže)
 3. Po přidání proměnných udělej Redeploy.
 4. Settings → Domains → přidej doménu / subdoménu. Nastav `siteUrl` v `site.config.json`
    na skutečnou doménu a v Google Search Console odešli `/sitemap.xml`.

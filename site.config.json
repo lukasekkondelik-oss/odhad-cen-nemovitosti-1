@@ -108,7 +108,7 @@
   ],
   "hero": {
     "title": "Kolik stojí vaše nemovitost? Zjistěte to zdarma a nezávazně",
-    "lead": "Odhad tržní ceny bytu, domu nebo pozemku od zkušených makléřů. Zpracujeme také odhady pro dědické řízení a zajistíme znalecký posudek.",
+    "lead": "Odhad tržní ceny bytu, domu nebo pozemku od zkušených makléřů. Zpracujeme také odhady pro dědické řízení a vypracujeme znalecký posudek.",
     "cta": "Chci odhad ceny"
   },
   "stats": [
@@ -165,12 +165,12 @@
     },
     {
       "title": "Odhad pro dědické řízení",
-      "text": "Určení obvyklé ceny zděděné nemovitosti pro notáře a vypořádání mezi dědici.",
+      "text": "Určení obvyklé ceny zděděné nemovitosti pro notáře a vypořádání mezi dědici. Zdarma.",
       "href": "/dedicky-odhad-nemovitosti/"
     },
     {
       "title": "Znalecký posudek",
-      "text": "Znalecký posudek pro soud, notáře a další úřední účely.",
+      "text": "Znalecký posudek vypracujeme přímo my, pro soud, notáře a další úřední účely.",
       "href": "/znalecky-posudek/"
     }
   ],
@@ -320,7 +320,7 @@
   "faq": [
     {
       "q": "Je odhad ceny nemovitosti opravdu zdarma?",
-      "a": "Ano. Tržní odhad ceny nemovitosti je zdarma a nezávazný. Nic vás nezavazuje k tomu, abyste s námi nemovitost prodávali. Odhad pro dědické řízení a znalecký posudek se zpracovávají na zakázku – podmínky vám sdělí makléř."
+      "a": "Ano. Tržní odhad ceny nemovitosti i odhad pro dědické řízení jsou zdarma a nezávazné. Nic vás nezavazuje k tomu, abyste s námi nemovitost prodávali. Znalecký posudek je placená služba, cenu vám sdělíme předem."
     },
     {
       "q": "Jak přesný je odhad ceny?",
@@ -328,11 +328,11 @@
     },
     {
       "q": "Jaký je rozdíl mezi tržním odhadem a znaleckým posudkem?",
-      "a": "Tržní odhad určuje cenu, za kterou lze nemovitost realisticky prodat (obvyklou cenu). Znalecký posudek vypracovává znalec zapsaný v seznamu znalců. Je to formální dokument se znaleckou doložkou, který se používá tam, kde je potřeba úřední ocenění, například u soudu. Tržní odhad posudek nenahrazuje. Pomůžeme vám vybrat správný druh a v případě potřeby posudek zajistit."
+      "a": "Tržní odhad určuje cenu, za kterou lze nemovitost realisticky prodat (obvyklou cenu). Znalecký posudek vypracovává znalec zapsaný v seznamu znalců. Je to formální dokument se znaleckou doložkou, který se používá tam, kde je potřeba úřední ocenění, například u soudu. Tržní odhad posudek nenahrazuje. Pomůžeme vám vybrat správný druh a znalecký posudek vám vypracujeme přímo my."
     },
     {
       "q": "Zpracováváte odhady pro dědické řízení?",
-      "a": "Ano. V dědickém řízení se určuje obvyklá cena nemovitosti a notář jako soudní komisař ji potřebuje znát. Zpracujeme odhad obvyklé ceny a podle situace vám poradíme, zda stačí, nebo je lepší znalecký posudek. Doporučujeme předem ověřit u notáře, jaký podklad vyžaduje."
+      "a": "Ano. V dědickém řízení se určuje obvyklá cena nemovitosti a notář jako soudní komisař ji potřebuje znát. Zpracujeme odhad obvyklé ceny zdarma a podle situace vám poradíme, zda stačí, nebo je lepší znalecký posudek. Doporučujeme předem ověřit u notáře, jaký podklad vyžaduje."
     },
     {
       "q": "Je pro dědické řízení povinný znalecký posudek?",
