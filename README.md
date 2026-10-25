@@ -40,9 +40,12 @@ Poznámka: Vercel Hobby je pouze pro nekomerční použití. Pro web pracující
 volitelně Turnstile, validace podle polí z configu, potom (1) e-mail makléřce, (2) potvrzení klientovi.
 Lead jde první, selhání potvrzení klientovi ho neztratí.
 
-## Make později
-Nastav `LEAD_WEBHOOK_URL` na Custom webhook v Make. Funkce pošle JSON s poli formuláře.
-Vše ostatní zůstane beze změny.
+## Odesílání e-mailů přes Make (alternativa k Resendu)
+Pokud nastavíš `LEAD_WEBHOOK_URL` (Custom webhook v Make), je Make **hlavní cesta**: funkce na serveru ověří formulář a pošle do Make JSON s polem `fields`, s hotovým e-mailem pro makléře (`agent`: `toText`, `subject`, `html`, `text`, `replyTo`) a pro klienta (`client`: totéž). Scénář v Make má jen tři moduly: Webhook, e-mail makléři (Gmail/Microsoft 365/SMTP ze schránky kanceláře), e-mail klientovi.
+- Selže-li webhook a je nastaven `RESEND_API_KEY`, odešle se záložně přes Resend. Bez Resendu uživatel uvidí chybu a může zavolat.
+- Webhook URL je tajná, proto formulář neposílá data do Make z prohlížeče, ale přes `/api/lead`.
+- V Make zapni „Store incomplete executions" a e-mailové upozornění na chyby scénáře.
+- Make je další zpracovatel osobních údajů: zvol EU zónu a doplň ho do zásad ochrany osobních údajů.
 
 ## Neveřejné zobrazení (před spuštěním)
 - `indexing: false` v `site.config.json` (výchozí) přidá `noindex`, `Disallow: /` v robots.txt a vynechá sitemap, takže web Google nenajde.

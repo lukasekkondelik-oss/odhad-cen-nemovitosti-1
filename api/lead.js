@@ -63,27 +63,53 @@ export async function processLead({ body, headers = {}, env }) {
     // příjemce poptávek: AGENT_EMAIL (volitelně přepíše), jinak firemní e-mail z konfigurace
     const agents = String(env.AGENT_EMAIL || cfg.company.email || '').split(',').map((s) => s.trim()).filter(Boolean);
     if (!agents.length) throw new Error('Není nastaven příjemce poptávek');
-    // odesílatel: MAIL_FROM, jinak odhad@<doména firemního e-mailu>
+    // odesílatel (Resend): MAIL_FROM, jinak odhad@<doména firemního e-mailu>
     const from = env.MAIL_FROM || `${cfg.brand} <odhad@${String(cfg.company.email).split('@')[1]}>`;
+    const agentMail = agentEmail(ctx);
+    const clientMail = clientEmail(ctx);
 
-    // 1) lead pro makléřku – nejdůležitější, jde první
-    await sendMail(env, { from, to: agents, replyTo: data.email, ...agentEmail(ctx) });
-    // 2) potvrzení klientovi – selhání neshodí požadavek (lead už je doručen)
-    try { await sendMail(env, { from, to: [data.email], replyTo: agents[0], ...clientEmail(ctx) }); }
-    catch (e) { console.error('client mail failed', e.message); }
-    // 3) volitelně webhook (např. Make) – best effort
+    // A) Make (nebo jiná automatizace): hlavní cesta, pokud je nastaven LEAD_WEBHOOK_URL.
+    //    Make dostane hotové e-maily i všechna pole a jen je odešle ze schránky kanceláře.
     if (env.LEAD_WEBHOOK_URL) {
-      await fetch(env.LEAD_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, ...meta }),
-        signal: AbortSignal.timeout(3000)
-      }).catch(() => {});
+      const payload = {
+        source: 'web',
+        ...meta,
+        serviceType: data.serviceType || '',
+        data,
+        fields: labelled.map(({ name, label, value }) => ({ name, label, value })),
+        agent: { to: agents, toText: agents.join(','), replyTo: data.email, ...agentMail },
+        client: { to: [data.email], toText: data.email, replyTo: agents[0], ...clientMail }
+      };
+      const ok = await postWebhook(env.LEAD_WEBHOOK_URL, payload);
+      if (ok) return r(200, { ok: true });
+      console.error('webhook failed');
+      if (!env.RESEND_API_KEY) throw new Error('Webhook selhal a není záložní Resend');
+      // jinak pokračuje záložní odeslání přes Resend
     }
+
+    // B) Resend: 1) lead pro makléře – nejdůležitější, jde první
+    await sendMail(env, { from, to: agents, replyTo: data.email, ...agentMail });
+    //    2) potvrzení klientovi – selhání neshodí požadavek (lead už je doručen)
+    try { await sendMail(env, { from, to: [data.email], replyTo: agents[0], ...clientMail }); }
+    catch (e) { console.error('client mail failed', e.message); }
     return r(200, { ok: true });
   } catch (e) {
     console.error('lead failed', e.message);
     return r(502, { ok: false, error: 'send_failed' });
+  }
+}
+
+async function postWebhook(url, payload) {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      signal: AbortSignal.timeout(8000)
+    });
+    return res.ok;
+  } catch {
+    return false;
   }
 }
 

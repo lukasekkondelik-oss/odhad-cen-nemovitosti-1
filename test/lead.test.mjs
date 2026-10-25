@@ -5,7 +5,7 @@ import { processLead } from '../api/lead.js';
 const sent = [];
 globalThis.fetch = async (url, opts) => {
   sent.push({ url, body: JSON.parse(opts.body) });
-  return new Response('{}', { status: 200 });
+  return new Response('{}', { status: String(url).includes('fail.hook') ? 500 : 200 });
 };
 const env = { RESEND_API_KEY: 'k', MAIL_FROM: 'a <a@b.cz>', AGENT_EMAIL: 'makler@b.cz' };
 import cfg from '../api/_lib/fields.generated.js';
@@ -37,4 +37,23 @@ assert.equal(r.status, 200);
 assert.deepEqual(sent[0].body.to, [cfg.company.email], 'výchozí příjemce = firemní e-mail');
 assert.ok(sent[0].body.from.includes('odhad@' + cfg.company.email.split('@')[1]), 'výchozí odesílatel');
 assert.equal((await call(good, {})).status, 502, 'bez API klíče chyba');
+
+// ---- Make (webhook) jako hlavní cesta ----
+sent.length = 0;
+r = await call(good, { LEAD_WEBHOOK_URL: 'https://ok.hook/x' });
+assert.equal(r.status, 200);
+assert.equal(sent.length, 1, 'jen webhook, žádný Resend');
+assert.equal(sent[0].url, 'https://ok.hook/x');
+assert.equal(sent[0].body.agent.toText, cfg.company.email);
+assert.equal(sent[0].body.client.toText, 'jan@test.cz');
+assert.ok(sent[0].body.agent.html.includes('Nový lead') && sent[0].body.client.subject, 'hotové e-maily v payloadu');
+assert.ok(sent[0].body.fields.some((f) => f.name === 'serviceType'), 'pole formuláře');
+// webhook selže, Resend není -> chyba (uživatel to uvidí)
+sent.length = 0;
+assert.equal((await call(good, { LEAD_WEBHOOK_URL: 'https://fail.hook/x' })).status, 502);
+// webhook selže, Resend je -> záložní odeslání
+sent.length = 0;
+r = await call(good, { LEAD_WEBHOOK_URL: 'https://fail.hook/x', RESEND_API_KEY: 'k' });
+assert.equal(r.status, 200);
+assert.equal(sent.filter((x) => x.url.includes('resend')).length, 2, 'záloha přes Resend');
 console.log('lead.test OK');
