@@ -2,7 +2,7 @@
   "_info": "JEDINÝ soubor, který upravuješ pro brand, texty, tým a formulář. Hodnoty '[DOPLNIT]' build vypíše jako varování.",
   "indexing": false,
   "_indexingInfo": "false = web je skrytý před vyhledávači (noindex + robots Disallow, bez sitemap). Před ostrým spuštěním přepni na true.",
-  "siteUrl": "https://odhad.example.cz",
+  "siteUrl": "https://www.odhadnemovitostialfa.cz",
   "lang": "cs",
   "brand": {
     "name": "ALFA ESTATE",
@@ -356,7 +356,7 @@
     "intro": "Vyplňte údaje o nemovitosti a vyberte, co potřebujete – tržní odhad, odhad pro dědické řízení nebo znalecký posudek. Makléř se vám ozve.",
     "submit": "Odeslat poptávku",
     "sending": "Odesílám…",
-    "success": "Vaši poptávku jsme úspěšně přijali. Naši makléři vás budou co nejdříve kontaktovat.",
+    "success": "Vaši poptávku jsme přijali a budeme vás co nejdříve kontaktovat.",
     "error": "Odeslání se nepodařilo. Zkuste to prosím znovu, nebo nám zavolejte.",
     "consent": "Souhlasím se zpracováním osobních údajů za účelem vypracování odhadu či posudku a kontaktování makléřem, v rozsahu uvedeném v [zásadách ochrany osobních údajů](/ochrana-osobnich-udaju/).",
     "fields": [
@@ -467,7 +467,7 @@
       }
     ],
     "confirmClient": false,
-    "successTitle": "Děkujeme, poptávka je odeslána"
+    "successTitle": "Děkujeme, poptávku máme"
   },
   "analytics": {
     "_info": "Měřicí kód se načte JEN po souhlasu s cookies. Vyplň např. Google Analytics ID (G-XXXXXXX), jinak nic nenačítá.",
