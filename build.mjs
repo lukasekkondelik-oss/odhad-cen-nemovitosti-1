@@ -182,7 +182,7 @@ const helpers = {
       }
       return `<div class="field${x.width === 'full' ? ' full' : ''}"><label for="${id}">${esc(x.label)}${x.required ? ' <span aria-hidden="true">*</span>' : ''}</label>${input}</div>`;
     };
-    return `<form id="lead-form" class="lead-form" novalidate data-sending="${esc(f.sending)}" data-submit="${esc(f.submit)}" data-success="${esc(f.success)}" data-error="${esc(f.error)}">
+    return `<form id="lead-form" class="lead-form" novalidate data-sending="${esc(f.sending)}" data-submit="${esc(f.submit)}" data-success-title="${esc(f.successTitle)}" data-success="${esc(f.success)}" data-error="${esc(f.error)}">
   <div class="grid">${f.fields.map(field).join('')}</div>
   <div class="hp" aria-hidden="true"><label>Nevyplňovat <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
   <input type="hidden" name="ts" value="">
@@ -364,7 +364,7 @@ fs.mkdirSync(path.join(ROOT, 'api', '_lib'), { recursive: true });
 fs.writeFileSync(
   path.join(ROOT, 'api', '_lib', 'fields.generated.js'),
   '// Generováno buildem z site.config.json – needitovat\nexport default ' +
-    JSON.stringify({ brand: cfg.brand.name, company: { ...cfg.company, phonesText: cfg.company.contacts.map((p) => `${p.phone} (${p.name})`).join(' · ') }, fields: cfg.form.fields }, null, 2) + ';\n'
+    JSON.stringify({ brand: cfg.brand.name, company: { ...cfg.company, phonesText: cfg.company.contacts.map((p) => `${p.phone} (${p.name})`).join(' · ') }, fields: cfg.form.fields, confirmClient: !!cfg.form.confirmClient }, null, 2) + ';\n'
 );
 
 // varování na nedoplněné údaje

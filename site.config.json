@@ -344,7 +344,7 @@
     },
     {
       "q": "Jak dlouho trvá, než se mi makléř ozve?",
-      "a": "Zpravidla do 24 hodin v pracovní dny. Odhad vám pošleme také e-mailem."
+      "a": "Zpravidla do 24 hodin v pracovní dny. Makléř vám zavolá a odhad s vámi probere."
     },
     {
       "q": "Co se děje s mými osobními údaji?",
@@ -354,9 +354,9 @@
   "form": {
     "title": "Zjistěte cenu své nemovitosti",
     "intro": "Vyplňte údaje o nemovitosti a vyberte, co potřebujete – tržní odhad, odhad pro dědické řízení nebo znalecký posudek. Makléř se vám ozve.",
-    "submit": "Odeslat a získat odhad",
+    "submit": "Odeslat poptávku",
     "sending": "Odesílám…",
-    "success": "Děkujeme! Poptávka byla odeslána, potvrzení jsme vám poslali e-mailem. Makléř se vám brzy ozve.",
+    "success": "Vaši poptávku jsme úspěšně přijali. Naši makléři vás budou co nejdříve kontaktovat.",
     "error": "Odeslání se nepodařilo. Zkuste to prosím znovu, nebo nám zavolejte.",
     "consent": "Souhlasím se zpracováním osobních údajů za účelem vypracování odhadu či posudku a kontaktování makléřem, v rozsahu uvedeném v [zásadách ochrany osobních údajů](/ochrana-osobnich-udaju/).",
     "fields": [
@@ -465,7 +465,9 @@
         "required": true,
         "autocomplete": "email"
       }
-    ]
+    ],
+    "confirmClient": false,
+    "successTitle": "Děkujeme, poptávka je odeslána"
   },
   "analytics": {
     "_info": "Měřicí kód se načte JEN po souhlasu s cookies. Vyplň např. Google Analytics ID (G-XXXXXXX), jinak nic nenačítá.",

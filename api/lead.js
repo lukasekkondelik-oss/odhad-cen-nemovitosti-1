@@ -66,7 +66,7 @@ export async function processLead({ body, headers = {}, env }) {
     // odesílatel (Resend): MAIL_FROM, jinak odhad@<doména firemního e-mailu>
     const from = env.MAIL_FROM || `${cfg.brand} <odhad@${String(cfg.company.email).split('@')[1]}>`;
     const agentMail = agentEmail(ctx);
-    const clientMail = clientEmail(ctx);
+    const clientMail = cfg.confirmClient ? clientEmail(ctx) : null; // potvrzení klientovi je zatím vypnuto (form.confirmClient)
 
     // A) Make (nebo jiná automatizace): hlavní cesta, pokud je nastaven LEAD_WEBHOOK_URL.
     //    Make dostane hotové e-maily i všechna pole a jen je odešle ze schránky kanceláře.
@@ -78,7 +78,7 @@ export async function processLead({ body, headers = {}, env }) {
         data,
         fields: labelled.map(({ name, label, value }) => ({ name, label, value })),
         agent: { to: agents, toText: agents.join(','), replyTo: data.email, ...agentMail },
-        client: { to: [data.email], toText: data.email, replyTo: agents[0], ...clientMail }
+        client: clientMail ? { to: [data.email], toText: data.email, replyTo: agents[0], ...clientMail } : null
       };
       const ok = await postWebhook(env.LEAD_WEBHOOK_URL, payload);
       if (ok) return r(200, { ok: true });
@@ -90,8 +90,10 @@ export async function processLead({ body, headers = {}, env }) {
     // B) Resend: 1) lead pro makléře – nejdůležitější, jde první
     await sendMail(env, { from, to: agents, replyTo: data.email, ...agentMail });
     //    2) potvrzení klientovi – selhání neshodí požadavek (lead už je doručen)
-    try { await sendMail(env, { from, to: [data.email], replyTo: agents[0], ...clientMail }); }
-    catch (e) { console.error('client mail failed', e.message); }
+    if (clientMail) {
+      try { await sendMail(env, { from, to: [data.email], replyTo: agents[0], ...clientMail }); }
+      catch (e) { console.error('client mail failed', e.message); }
+    }
     return r(200, { ok: true });
   } catch (e) {
     console.error('lead failed', e.message);

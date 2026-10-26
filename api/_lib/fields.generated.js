@@ -155,5 +155,6 @@ export default {
       "required": true,
       "autocomplete": "email"
     }
-  ]
+  ],
+  "confirmClient": false
 };

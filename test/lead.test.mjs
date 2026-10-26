@@ -14,9 +14,8 @@ const good = { serviceType: 'Odhad pro dědické řízení', propertyType: 'Byt'
 
 let r = await call(good);
 assert.equal(r.status, 200);
-assert.equal(sent.length, 2, 'dva e-maily');
+assert.equal(sent.length, 1, 'klientovi se zatím nepotvrzuje, jen e-mail makléři');
 assert.deepEqual(sent[0].body.to, ['makler@b.cz']);
-assert.deepEqual(sent[1].body.to, ['jan@test.cz']);
 assert.ok(!sent[0].body.html.includes('<b>Novák'), 'HTML je escapované');
 
 sent.length = 0;
@@ -45,8 +44,8 @@ assert.equal(r.status, 200);
 assert.equal(sent.length, 1, 'jen webhook, žádný Resend');
 assert.equal(sent[0].url, 'https://ok.hook/x');
 assert.equal(sent[0].body.agent.toText, cfg.company.email);
-assert.equal(sent[0].body.client.toText, 'jan@test.cz');
-assert.ok(sent[0].body.agent.html.includes('Nový lead') && sent[0].body.client.subject, 'hotové e-maily v payloadu');
+assert.equal(sent[0].body.client, null, 'bez potvrzení klientovi');
+assert.ok(sent[0].body.agent.html.includes('Nový lead') && sent[0].body.agent.subject, 'hotový e-mail v payloadu');
 assert.ok(sent[0].body.fields.some((f) => f.name === 'serviceType'), 'pole formuláře');
 // webhook selže, Resend není -> chyba (uživatel to uvidí)
 sent.length = 0;
@@ -55,5 +54,5 @@ assert.equal((await call(good, { LEAD_WEBHOOK_URL: 'https://fail.hook/x' })).sta
 sent.length = 0;
 r = await call(good, { LEAD_WEBHOOK_URL: 'https://fail.hook/x', RESEND_API_KEY: 'k' });
 assert.equal(r.status, 200);
-assert.equal(sent.filter((x) => x.url.includes('resend')).length, 2, 'záloha přes Resend');
+assert.equal(sent.filter((x) => x.url.includes('resend')).length, 1, 'záloha přes Resend');
 console.log('lead.test OK');

@@ -61,6 +61,22 @@
     return ok;
   }
 
+  // Po úspěšném odeslání nahradí celou kartu s formulářem potvrzením (stejná výška, aby stránka neposkočila)
+  function showSuccess() {
+    var card = form.closest('.card') || form.parentNode;
+    card.style.minHeight = card.getBoundingClientRect().height + 'px';
+    Array.prototype.slice.call(card.children).forEach(function (el) { el.hidden = true; });
+    var box = document.createElement('div');
+    box.className = 'form-success';
+    box.setAttribute('role', 'status');
+    box.innerHTML = '<span class="form-success-icon" aria-hidden="true"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><h2></h2><p></p>';
+    box.querySelector('h2').textContent = form.dataset.successTitle;
+    box.querySelector('p').textContent = form.dataset.success;
+    card.appendChild(box);
+    var top = card.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.6) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!valid()) { setStatus('Zkontrolujte prosím vyplněná pole.', 'err'); return; }
@@ -75,7 +91,7 @@
     }).then(function (r) {
       return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok && j.ok, j: j }; });
     }).then(function (res) {
-      if (res.ok) { window.location.href = '/dekujeme/'; return; }
+      if (res.ok) { showSuccess(); return; }
       throw new Error(res.j.error || 'err');
     }).catch(function () {
       setStatus(form.dataset.error, 'err');
