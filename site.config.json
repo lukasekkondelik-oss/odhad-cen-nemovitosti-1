@@ -1,6 +1,6 @@
 {
-  "_info": "JEDINÝ soubor, který upravuješ pro brand, texty, tým a formulář. Hodnoty '[DOPLNIT]' build vypíše jako varování.",
-  "indexing": false,
+  "_info": "JEDINÝ soubor, který upravuješ pro brand, texty, tým a formulář. Nevyplněné hodnoty se v konfiguraci označují hranatými závorkami a build na ně upozorní.",
+  "indexing": true,
   "_indexingInfo": "false = web je skrytý před vyhledávači (noindex + robots Disallow, bez sitemap). Před ostrým spuštěním přepni na true.",
   "siteUrl": "https://www.odhadnemovitostialfa.cz",
   "lang": "cs",
