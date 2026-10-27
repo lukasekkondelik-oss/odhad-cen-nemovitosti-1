@@ -477,7 +477,7 @@
   "verification": {
     "_info": "Ověřovací kódy z Google Search Console, Bing Webmaster Tools a Seznam Webmaster (jen obsah atributu content). Prázdné se nevypisují.",
     "google": "",
-    "bing": "",
+    "bing": "A348DD9360E9A39A598282757C2BF554",
     "seznam": ""
   },
   "indexNow": true
