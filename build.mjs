@@ -72,6 +72,15 @@ const helpers = {
   servicesLinks: () =>
     cfg.services.map((x) => `<a href="${esc(x.href)}">${esc(x.title)}</a>`).join('<br>'),
 
+  verification: () => {
+    const v = cfg.verification || {};
+    return [
+      v.google && `<meta name="google-site-verification" content="${esc(v.google)}">`,
+      v.bing && `<meta name="msvalidate.01" content="${esc(v.bing)}">`,
+      v.seznam && `<meta name="seznam-wmt" content="${esc(v.seznam)}">`
+    ].filter(Boolean).join('\n');
+  },
+
   cookieBanner: () => (cfg.analytics.gaId ? partial('cookie-banner') : ''),
 
   cookieSettings: () =>
@@ -217,6 +226,10 @@ function jsonLd(page, loc) {
     '@id': `${base}/#organization`,
     name: cfg.brand.name,
     legalName: c.legalName,
+    vatID: c.dic,
+    taxID: c.ico,
+    identifier: { '@type': 'PropertyValue', propertyID: 'IČO', value: c.ico },
+    foundingDate: c.founded,
     alternateName: `${cfg.brand.name} ${cfg.brand.sub}`,
     url: base + '/',
     logo: cfg.brand.logo ? base + cfg.brand.logo : undefined,
@@ -300,6 +313,7 @@ function emit(meta, body, extraCtx = {}) {
     ...meta,
     url: base + urlPath,
     ogImage: base + cfg.brand.ogImage,
+    fullTitle: (meta.title + ' | ' + cfg.brand.name).length <= 68 && !meta.title.includes(cfg.brand.name) ? meta.title + ' | ' + cfg.brand.name : meta.title,
     robots: meta.noindex || !cfg.indexing ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
   };
   const ctx = { ver, site: cfg, brand: cfg.brand, company: cfg.company, hero: cfg.hero, about: cfg.about, team: cfg.team, form: cfg.form, page, ...extraCtx };
@@ -373,3 +387,23 @@ if (todo) warnings.add(`V site.config.json zbývá ${todo}× [DOPLNIT]`);
 if (cfg.siteUrl.includes('example')) warnings.add('siteUrl je stále example – nastav skutečnou doménu');
 console.log(`OK: ${pages.length} indexovatelných stránek -> dist/`);
 for (const w of warnings) console.warn('⚠ ', w);
+
+// IndexNow: při produkčním nasazení upozorní Bing, Seznam a další vyhledávače na všechny adresy
+// (Google IndexNow nepodporuje, tomu slouží sitemap a Search Console).
+if (cfg.indexing) {
+  const key = crypto.createHash('sha256').update(base).digest('hex').slice(0, 32);
+  fs.writeFileSync(path.join(DIST, `${key}.txt`), key);
+  if (cfg.indexNow && process.env.VERCEL_ENV === 'production') {
+    try {
+      const res = await fetch('https://api.indexnow.org/indexnow', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({ host: new URL(base).host, key, keyLocation: `${base}/${key}.txt`, urlList: pages.map((p) => p.loc) }),
+        signal: AbortSignal.timeout(8000)
+      });
+      console.log(`IndexNow: ${res.status}`);
+    } catch (e) {
+      console.warn('⚠  IndexNow se nepodařilo odeslat (build pokračuje):', e.message);
+    }
+  }
+}

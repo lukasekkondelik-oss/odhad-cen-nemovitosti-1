@@ -47,6 +47,7 @@ export default {
         "phone": "+420 776 686 776"
       }
     ],
+    "founded": "2021-05-05",
     "phonesText": "+420 603 382 392 (Soňa Petříková) · +420 776 686 776 (Vít Čirik)"
   },
   "fields": [

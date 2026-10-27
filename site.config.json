@@ -10,7 +10,7 @@
     "logo": "/assets/logo.png",
     "logoAlt": "ALFA ESTATE – V&S Partners",
     "favicon": "/assets/favicon.svg",
-    "ogImage": "/assets/og-image.svg",
+    "ogImage": "/assets/og-image.png",
     "sub": "V&S Partners",
     "logoLight": "/assets/logo-light.png"
   },
@@ -82,7 +82,8 @@
         "name": "Vít Čirik",
         "phone": "+420 776 686 776"
       }
-    ]
+    ],
+    "founded": "2021-05-05"
   },
   "nav": [
     {
@@ -472,5 +473,12 @@
   "analytics": {
     "_info": "Měřicí kód se načte JEN po souhlasu s cookies. Vyplň např. Google Analytics ID (G-XXXXXXX), jinak nic nenačítá.",
     "gaId": ""
-  }
+  },
+  "verification": {
+    "_info": "Ověřovací kódy z Google Search Console, Bing Webmaster Tools a Seznam Webmaster (jen obsah atributu content). Prázdné se nevypisují.",
+    "google": "",
+    "bing": "",
+    "seznam": ""
+  },
+  "indexNow": true
 }

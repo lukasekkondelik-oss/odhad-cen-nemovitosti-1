@@ -52,8 +52,14 @@ Pokud nastavíš `LEAD_WEBHOOK_URL` (Custom webhook v Make), je Make **hlavní c
 - Pro omezení přístupu používej Vercel Deployment Protection (Settings → Deployment Protection); náhledy větví jsou chráněné přihlášením do Vercelu.
 - Při ostrém spuštění přepni `indexing` na `true`.
 
+## Vyhledávače
+- Sitemap a robots.txt se generují při buildu (jen pokud je `indexing: true`).
+- Ověřovací kódy pro Google Search Console, Bing a Seznam Webmaster se vkládají do `site.config.json` → `verification` (prázdné se nevypisují).
+- Při každém **produkčním** nasazení na Vercelu build pošle seznam adres přes IndexNow (Bing, Seznam a další; Google to nepodporuje). Vypnutí: `indexNow: false`.
+- Titulek stránek dostává příponu „| značka“, pokud se vejde do 68 znaků.
+
 ## Před spuštěním
 - Právní stránky jsou šablony → nechat zkontrolovat právníkem.
-- `og-image.svg` nahradit PNG 1200×630 (sociální sítě SVG nezobrazují).
+- Obrázek pro sdílení je `static/assets/og-image.png` (1200×630).
 - Doplnit logo, favicon, fotky týmu, IČO, sídlo, e-maily.
 - Font Space Grotesk je hostovaný lokálně (static/assets/fonts), ne z Google CDN.
