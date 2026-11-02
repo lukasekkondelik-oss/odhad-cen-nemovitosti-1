@@ -72,6 +72,11 @@ const helpers = {
   servicesLinks: () =>
     cfg.services.map((x) => `<a href="${esc(x.href)}">${esc(x.title)}</a>`).join('<br>'),
 
+  heroPreload: () =>
+    currentPage && currentPage.hero
+      ? '<link rel="preload" as="image" href="/assets/hero-1920.webp" media="(min-width:901px)" fetchpriority="high">\n<link rel="preload" as="image" href="/assets/hero-900.webp" media="(max-width:900px)" fetchpriority="high">'
+      : '',
+
   verification: () => {
     const v = cfg.verification || {};
     return [

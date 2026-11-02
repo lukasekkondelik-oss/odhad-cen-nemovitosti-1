@@ -232,3 +232,21 @@ h1,h2,h3{font-weight:500}
 .form-success p{margin:0;max-width:34ch;color:var(--c-muted)}
 .card[style*="min-height"]{display:flex;flex-direction:column}
 .card[style*="min-height"]>.form-success{flex:1}
+
+/* ---- Hero s fotografií: tmavě modrý překryv drží brand a čitelnost textu ---- */
+.hero{
+  background-color:var(--c-primary);
+  background-image:
+    linear-gradient(90deg,rgba(24,37,53,.93) 0%,rgba(24,37,53,.82) 42%,rgba(24,37,53,.45) 100%),
+    url(/assets/hero-1920.webp);
+  background-size:cover;
+  background-position:center 40%;
+  background-repeat:no-repeat
+}
+@media (max-width:900px){
+  .hero{
+    background-image:
+      linear-gradient(180deg,rgba(24,37,53,.88) 0%,rgba(24,37,53,.74) 100%),
+      url(/assets/hero-900.webp)
+  }
+}
