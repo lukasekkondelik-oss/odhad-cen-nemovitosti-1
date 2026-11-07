@@ -255,3 +255,14 @@ h1,h2,h3{font-weight:500}
 .crumbs .container{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-top:10px;padding-bottom:10px}
 .crumbs a{color:var(--c-muted)}
 .crumbs a:hover{color:var(--c-accentText,var(--c-primary))}
+
+.footer-grid .footer-title+.social,.social{margin-top:0}
+.site-footer .social{display:flex;flex-direction:column;gap:12px}
+.site-footer .footer-title:not(:first-child){margin-top:32px}
+.social-link{display:flex;align-items:center;gap:14px;padding:12px 16px;border:1px solid var(--c-accent);border-radius:var(--radius);color:#fff;text-decoration:none;transition:background .2s,border-color .2s}
+.social-link:hover{background:var(--c-accent);color:var(--c-primary)}
+.social-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--c-accent);color:var(--c-primary);flex:none}
+.social-link:hover .social-ico{background:var(--c-primary);color:#fff}
+.social-txt strong{display:block;font-size:1rem;line-height:1.2}
+.social-txt small{display:block;font-size:.8rem;opacity:.75}
+.site-footer .social-link{color:#fff}.site-footer .social-link:hover{color:var(--c-primary)}

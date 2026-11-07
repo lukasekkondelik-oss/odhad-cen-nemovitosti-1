@@ -26,6 +26,9 @@ const ver = crypto
   .slice(0, 8);
 // Ikony (Lucide, licence ISC) – inline SVG, dědí barvu přes currentColor
 const ICONS = {
+  instagram: '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/>',
+  facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
+  linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
   chart: '<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/>',
   building: '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
   key: '<path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/>',
@@ -231,11 +234,14 @@ const helpers = {
 
   year: () => String(new Date().getFullYear()),
 
-  social: () =>
-    Object.entries(cfg.company.social)
-      .filter(([, v]) => v)
-      .map(([k, v]) => `<a href="${esc(v)}" rel="noopener me" target="_blank">${esc(k[0].toUpperCase() + k.slice(1))}</a>`)
-      .join(' · '),
+  social: () => {
+    const items = Object.entries(cfg.company.social).filter(([, v]) => v);
+    if (!items.length) return '';
+    const label = (k, v) => (k === 'instagram' ? '@' + (v.match(/instagram\.com\/([^/?#]+)/)?.[1] || 'instagram') : k[0].toUpperCase() + k.slice(1));
+    return `<p class="footer-title">Sledujte nás</p><div class="social">${items
+      .map(([k, v]) => `<a class="social-link" href="${esc(v)}" rel="noopener me" target="_blank" aria-label="${esc(k[0].toUpperCase() + k.slice(1))} – ${esc(cfg.brand.name)}"><span class="social-ico">${svg(k, 1.75, 26)}</span><span class="social-txt"><strong>${esc(k[0].toUpperCase() + k.slice(1))}</strong><small>${esc(label(k, v))}</small></span></a>`)
+      .join('')}</div>`;
+  },
 
   analytics: () =>
     `<script>window.__GA_ID=${JSON.stringify(cfg.analytics.gaId || '')};</script>`,
