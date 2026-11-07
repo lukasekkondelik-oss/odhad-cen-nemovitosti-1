@@ -39,10 +39,28 @@ const svg = (n, w = 1.75, size = 20) =>
 const icon = (n) =>
   ICONS[n] ? `<span class="stat-icon" aria-hidden="true">${svg(n, 1.75, 26)}</span>` : '';
 
+// Rozměry JPEG/PNG/WebP z hlavičky souboru (bez závislostí) – kvůli CLS.
+function imgDims(src) {
+  try {
+    const b = fs.readFileSync(path.join(ROOT, 'static', src));
+    if (b[0] === 0xff && b[1] === 0xd8) {
+      let i = 2;
+      while (i < b.length) {
+        if (b[i] !== 0xff) { i++; continue; }
+        const m = b[i + 1];
+        if (m >= 0xc0 && m <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(m)) return ` width="${b.readUInt16BE(i + 7)}" height="${b.readUInt16BE(i + 5)}"`;
+        i += 2 + b.readUInt16BE(i + 2);
+      }
+    }
+    if (b.toString('latin1', 1, 4) === 'PNG') return ` width="${b.readUInt32BE(16)}" height="${b.readUInt32BE(20)}"`;
+  } catch {}
+  return '';
+}
+
 function aboutIntro(h) {
   const a = cfg.about;
   return `<section class="section about-intro"><div class="container profile-grid">
-  <div class="photo-frame"><img src="${esc(a.photo)}" alt="${esc(a.photoAlt)}" loading="lazy">${a.badge ? `<div class="badge"><strong>${esc(a.badge.value)}</strong><span>${esc(a.badge.label)}</span></div>` : ''}</div>
+  <div class="photo-frame"><img src="${esc(a.photo)}" alt="${esc(a.photoAlt)}"${imgDims(a.photo)} loading="lazy">${a.badge ? `<div class="badge"><strong>${esc(a.badge.value)}</strong><span>${esc(a.badge.label)}</span></div>` : ''}</div>
   <div class="profile-text"><p class="eyebrow">${esc(a.eyebrow)}</p><${h}>${esc(a.titleLead)} <em>${esc(a.titleAccent)}</em></${h}><div class="rule"></div>
   <blockquote class="quote">„${esc(a.quote)}“</blockquote>
   ${a.paragraphs.map((p) => `<p>${esc(p)}</p>`).join('')}
@@ -71,6 +89,11 @@ const helpers = {
 
   servicesLinks: () =>
     cfg.services.map((x) => `<a href="${esc(x.href)}">${esc(x.title)}</a>`).join('<br>'),
+
+  breadcrumbs: () =>
+    currentPage && currentPage.crumb && currentPage.url !== base + '/'
+      ? `<nav class="crumbs" aria-label="Drobečková navigace"><div class="container"><a href="/">Domů</a><span aria-hidden="true">›</span><span aria-current="page">${esc(currentPage.crumb)}</span></div></nav>`
+      : '',
 
   heroPreload: () =>
     currentPage && currentPage.hero
@@ -157,7 +180,7 @@ const helpers = {
       .map((m, i) => {
         const rev = i % 2 === 1;
         const photo = m.photo
-          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}" loading="lazy">`
+          ? `<img src="${esc(m.photo)}" alt="${esc(m.name)}"${imgDims(m.photo)} loading="lazy">`
           : `<div class="avatar-lg" aria-hidden="true">${esc(initials(m.name))}</div>`;
         const stats = (m.stats || []).map((x) => `<div class="mini-stat"><strong>${esc(x.value)}</strong><span>${esc(x.label)}</span></div>`).join('');
         const contact = [
@@ -318,7 +341,7 @@ function emit(meta, body, extraCtx = {}) {
     ...meta,
     url: base + urlPath,
     ogImage: base + cfg.brand.ogImage,
-    fullTitle: (meta.title + ' | ' + cfg.brand.name).length <= 68 && !meta.title.includes(cfg.brand.name) ? meta.title + ' | ' + cfg.brand.name : meta.title,
+    fullTitle: (meta.title + ' | ' + cfg.brand.name).length <= 60 && !meta.title.includes(cfg.brand.name) ? meta.title + ' | ' + cfg.brand.name : meta.title,
     robots: meta.noindex || !cfg.indexing ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'
   };
   const ctx = { ver, site: cfg, brand: cfg.brand, company: cfg.company, hero: cfg.hero, about: cfg.about, team: cfg.team, form: cfg.form, page, ...extraCtx };

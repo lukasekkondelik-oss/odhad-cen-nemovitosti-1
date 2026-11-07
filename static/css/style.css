@@ -250,3 +250,8 @@ h1,h2,h3{font-weight:500}
       url(/assets/hero-900.webp)
   }
 }
+
+.crumbs{background:var(--c-bg);border-bottom:1px solid var(--c-border);font-size:.85rem;color:var(--c-muted)}
+.crumbs .container{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-top:10px;padding-bottom:10px}
+.crumbs a{color:var(--c-muted)}
+.crumbs a:hover{color:var(--c-accentText,var(--c-primary))}
